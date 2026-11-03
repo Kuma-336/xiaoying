@@ -1,0 +1,48 @@
+[
+  {
+    "asset_id": "M01",
+    "title": "秋季新品介绍",
+    "description": "展示新品功能和适用场景",
+    "platform": "wechat_video",
+    "duration_seconds": 55,
+    "content_tags": ["product"],
+    "disclaimer": null
+  },
+  {
+    "asset_id": "M02",
+    "title": "用户故事短片",
+    "description": "真实用户访谈剪辑",
+    "platform": "douyin",
+    "duration_seconds": null,
+    "content_tags": ["interview"],
+    "disclaimer": null
+  },
+  {
+    "asset_id": "M03",
+    "title": "全网第一理财方案",
+    "description": "介绍某理财产品的历史表现",
+    "platform": "wechat_video",
+    "duration_seconds": 80,
+    "content_tags": ["finance"],
+    "disclaimer": null
+  },
+  {
+    "asset_id": "M04",
+    "title": "园区活动预告",
+    "description": "介绍周末园区开放活动",
+    "platform": "douyin",
+    "duration_seconds": 40,
+    "content_tags": ["event"],
+    "disclaimer": null
+  },
+  {
+    "asset_id": "M05",
+    "title": "产品使用技巧",
+    "description": "三项常用功能演示",
+    "platform": "wechat_video",
+    "duration_seconds": 65,
+    "content_tags": ["tutorial"],
+    "disclaimer": null
+  }
+]
+

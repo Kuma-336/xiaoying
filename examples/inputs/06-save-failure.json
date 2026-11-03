@@ -1,0 +1,11 @@
+{
+  "request_id": "REQ-SAVE-FAIL-001",
+  "assets": [
+    {
+      "asset_id": "M05",
+      "requested_time": "2026-11-08T14:00:00+08:00",
+      "simulate": {"save_failure": true}
+    }
+  ]
+}
+

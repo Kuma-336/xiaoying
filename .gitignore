@@ -20,3 +20,8 @@ coverage/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Runtime drafts and generated local state
+.runtime/
+.example-state/
+

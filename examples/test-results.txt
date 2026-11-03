@@ -1,0 +1,16 @@
+Command: python -m unittest discover -s tests -v
+
+test_duplicate_submission_creates_only_one_draft ... ok
+test_executor_blocks_hard_time_tampering ... ok
+test_executor_blocks_save_before_required_checks ... ok
+test_missing_information_requests_confirmation_and_does_not_save ... ok
+test_normal_schedule_saves_draft_without_publishing ... ok
+test_rule_risk_blocks_scheduling ... ok
+test_save_failure_is_explicit ... ok
+test_slot_conflict_suggests_but_does_not_change_hard_requirement ... ok
+test_step_limit_returns_incomplete ... ok
+test_trace_contains_auditable_fields ... ok
+
+Ran 10 tests in 0.086s
+OK
+

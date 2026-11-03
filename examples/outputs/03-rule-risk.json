@@ -1,0 +1,73 @@
+{
+  "request_id": "REQ-RISK-001",
+  "status": "partial",
+  "planner_mode": "mock",
+  "published": false,
+  "items": [
+    {
+      "asset_id": "M03",
+      "completion_status": "blocked",
+      "reason": "rule_risk",
+      "review_status": "blocked",
+      "risk_reasons": [
+        {
+          "code": "forbidden_claim",
+          "severity": "block",
+          "reason": "包含禁用表述：全网第一"
+        },
+        {
+          "code": "missing_disclaimer",
+          "severity": "block",
+          "reason": "金融内容缺少风险声明"
+        }
+      ],
+      "missing_fields": [],
+      "requested_time": "2026-11-05T15:00:00+08:00",
+      "suggested_time": "2026-11-05T15:00:00+08:00",
+      "hard_requirement_changed": false,
+      "pending_confirmations": [],
+      "draft": {
+        "status": "not_attempted",
+        "draft_id": null
+      },
+      "published": false
+    }
+  ],
+  "trace": [
+    {
+      "asset_id": "M03",
+      "step": 1,
+      "timestamp": "2026-11-03T03:29:07.905624+00:00",
+      "action": "read_asset",
+      "tool_parameters": {
+        "asset_id": "M03"
+      },
+      "return_summary": "素材已读取；缺失字段：无",
+      "decision_basis": "先读取素材元数据，确认审核所需信息是否齐全。",
+      "next_action": "check_rules"
+    },
+    {
+      "asset_id": "M03",
+      "step": 2,
+      "timestamp": "2026-11-03T03:29:07.905624+00:00",
+      "action": "check_rules",
+      "tool_parameters": {
+        "asset_id": "M03",
+        "requested_time": "2026-11-05T15:00:00+08:00"
+      },
+      "return_summary": "规则检查完成；风险数：2",
+      "decision_basis": "素材信息完整，下一步执行审核规则检查。",
+      "next_action": "finish"
+    },
+    {
+      "asset_id": "M03",
+      "step": 3,
+      "timestamp": "2026-11-03T03:29:07.905624+00:00",
+      "action": "finish",
+      "tool_parameters": {},
+      "return_summary": "工具执行成功",
+      "decision_basis": "发现阻断级规则风险，不进入排期和草稿保存。",
+      "next_action": null
+    }
+  ]
+}

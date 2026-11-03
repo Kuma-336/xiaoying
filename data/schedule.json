@@ -1,0 +1,15 @@
+[
+  {
+    "schedule_id": "SCH-001",
+    "asset_id": "EXIST-01",
+    "time": "2026-11-05T18:00:00+08:00",
+    "status": "confirmed"
+  },
+  {
+    "schedule_id": "SCH-002",
+    "asset_id": "EXIST-02",
+    "time": "2026-11-06T10:00:00+08:00",
+    "status": "confirmed"
+  }
+]
+

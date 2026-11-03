@@ -1,0 +1,94 @@
+{
+  "request_id": "REQ-DUPLICATE-001",
+  "status": "completed",
+  "planner_mode": "mock",
+  "published": false,
+  "items": [
+    {
+      "asset_id": "M04",
+      "completion_status": "draft_saved",
+      "reason": "ready_for_human_confirmation",
+      "review_status": "approved",
+      "risk_reasons": [],
+      "missing_fields": [],
+      "requested_time": "2026-11-07T12:00:00+08:00",
+      "suggested_time": "2026-11-07T12:00:00+08:00",
+      "hard_requirement_changed": false,
+      "pending_confirmations": [],
+      "draft": {
+        "status": "saved",
+        "draft_id": "DR-CD0AD206A3"
+      },
+      "published": false
+    }
+  ],
+  "trace": [
+    {
+      "asset_id": "M04",
+      "step": 1,
+      "timestamp": "2026-11-03T03:29:09.019797+00:00",
+      "action": "read_asset",
+      "tool_parameters": {
+        "asset_id": "M04"
+      },
+      "return_summary": "素材已读取；缺失字段：无",
+      "decision_basis": "先读取素材元数据，确认审核所需信息是否齐全。",
+      "next_action": "check_rules"
+    },
+    {
+      "asset_id": "M04",
+      "step": 2,
+      "timestamp": "2026-11-03T03:29:09.019797+00:00",
+      "action": "check_rules",
+      "tool_parameters": {
+        "asset_id": "M04",
+        "requested_time": "2026-11-07T12:00:00+08:00"
+      },
+      "return_summary": "规则检查完成；风险数：0",
+      "decision_basis": "素材信息完整，下一步执行审核规则检查。",
+      "next_action": "query_slots"
+    },
+    {
+      "asset_id": "M04",
+      "step": 3,
+      "timestamp": "2026-11-03T03:29:09.019797+00:00",
+      "action": "query_slots",
+      "tool_parameters": {
+        "requested_time": "2026-11-07T12:00:00+08:00",
+        "request_id": "REQ-DUPLICATE-001",
+        "asset_id": "M04"
+      },
+      "return_summary": "请求时段可用",
+      "decision_basis": "规则通过，查询用户要求时段及可用替代时段。",
+      "next_action": "save_draft"
+    },
+    {
+      "asset_id": "M04",
+      "step": 4,
+      "timestamp": "2026-11-03T03:29:09.035838+00:00",
+      "action": "save_draft",
+      "tool_parameters": {
+        "request_id": "REQ-DUPLICATE-001",
+        "asset_id": "M04",
+        "requested_time": "2026-11-07T12:00:00+08:00",
+        "proposed_time": "2026-11-07T12:00:00+08:00",
+        "review_status": "approved",
+        "risks": [],
+        "pending_confirmations": []
+      },
+      "return_summary": "新草稿已保存：DR-CD0AD206A3",
+      "decision_basis": "审核与时段信息已明确，保存草稿供人工确认；不执行发布。",
+      "next_action": "finish"
+    },
+    {
+      "asset_id": "M04",
+      "step": 5,
+      "timestamp": "2026-11-03T03:29:09.035838+00:00",
+      "action": "finish",
+      "tool_parameters": {},
+      "return_summary": "工具执行成功",
+      "decision_basis": "草稿已保存或命中幂等记录，结束本项处理。",
+      "next_action": null
+    }
+  ]
+}
