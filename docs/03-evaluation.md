@@ -48,4 +48,3 @@ uv run python -m src.cli run-suite --planner deepseek
 - 非思考模式仍可能产生非法工具参数；当前允许一次协议纠正。
 - 在线模型结果具有波动性，自动化单元测试不依赖网络。
 - 当前尚缺轮换密钥后的 DeepSeek 实际 Trace，因此真实模型效果仍未验证。
-

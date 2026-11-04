@@ -23,4 +23,3 @@
     "required_adaptation": "规则工具返回阻断风险后以 blocked 状态结束，停止时段查询和草稿保存"
   }
 }
-

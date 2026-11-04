@@ -27,4 +27,3 @@
 `test_controls` 仅供测试驱动器使用，不应直接交给模型，也不属于生产业务请求。保存失败注入和执行上限覆盖应由测试驱动器传给 Mock 工具或 Agent Runtime。
 
 `expected_trace_properties` 只规定必须观察到的业务转折和禁止动作，不限定模型唯一执行路径。最终验收必须使用 `src/` 实际运行后产生的 `outputs/` 与 `traces/`，不能用本目录的预期文件代替。离线 Mock 可验证流程，但不能替代真实 DeepSeek 决策证据。
-

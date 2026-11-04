@@ -44,4 +44,3 @@ class RunState:
             "remaining_model_steps": self.max_steps - self.model_steps,
             "remaining_tool_calls": self.max_tool_calls - self.tool_calls,
         }
-

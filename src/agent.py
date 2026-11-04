@@ -261,4 +261,3 @@ class AgentRuntime:
             "published": False,
             "usage": {"model_steps": state.model_steps, "tool_calls": state.tool_calls},
         }
-

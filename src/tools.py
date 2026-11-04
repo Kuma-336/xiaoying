@@ -374,4 +374,3 @@ def summarize_result(action: str, result: dict[str, Any]) -> str:
     if action == "save_draft":
         return f"草稿保存状态：{result.get('save_status')}；draft_id={result.get('draft_id')}"
     return "工具执行成功"
-

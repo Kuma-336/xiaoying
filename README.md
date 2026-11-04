@@ -78,4 +78,3 @@ uv run python -m src.cli run-suite --planner deepseek
 - 规则未通过、资料缺失或时段未重新查询时不能保存。
 - 每项素材最多 10 个模型步骤和 8 次工具调用。
 - Trace 不记录 API 密钥或模型隐藏思维过程。
-

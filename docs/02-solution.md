@@ -107,4 +107,3 @@ uv run python -m src.cli run-suite --planner deepseek
 ```
 
 DeepSeek 密钥仅从 `DEEPSEEK_API_KEY` 环境变量读取。`.env.example` 只提供空占位，`.env` 和 `.runtime/` 被 Git 忽略。
-

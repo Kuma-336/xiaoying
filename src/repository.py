@@ -100,4 +100,3 @@ class DraftStore:
             "created_new_draft": True,
             "payload_fingerprint": fingerprint,
         }
-

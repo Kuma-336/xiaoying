@@ -12,6 +12,5 @@ test_save_failure_is_explicit ... ok
 test_slot_conflict_requests_confirmation_without_save ... ok
 test_trace_has_required_audit_fields ... ok
 
-Ran 11 tests in 0.169s
+Ran 11 tests in 0.168s
 OK
-
