@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0.0",
+  "assets": [
+    {
+      "asset_id": "M01",
+      "asset_version": 3,
+      "title": "秋季新品功能介绍",
+      "asset_type": "short_video",
+      "platform": "wechat_channels",
+      "account_id": "acct-brand-main",
+      "duration_seconds": 52,
+      "file_uri": "mock://assets/M01-v3.mp4",
+      "metadata": {
+        "summary": "介绍新品的三项常用功能和适用场景。",
+        "transcript_excerpt": "新品支持快捷设置、跨设备同步和用量提醒。",
+        "tags": ["product", "launch", "tutorial"],
+        "claims": []
+      },
+      "rights": {
+        "music_license_status": "valid",
+        "music_license_expires_at": "2027-01-31T23:59:59+08:00",
+        "portrait_release_status": "not_required",
+        "third_party_material_status": "cleared"
+      },
+      "compliance": {
+        "content_category": "general_product",
+        "provided_disclosures": []
+      }
+    },
+    {
+      "asset_id": "M02",
+      "asset_version": 1,
+      "title": "社区用户故事",
+      "asset_type": "short_video",
+      "platform": "douyin",
+      "account_id": "acct-community-main",
+      "duration_seconds": null,
+      "file_uri": "mock://assets/M02-v1.mp4",
+      "metadata": {
+        "summary": "社区活动参与者访谈剪辑。",
+        "transcript_excerpt": "参加活动后，我认识了很多新朋友。",
+        "tags": ["community", "interview"],
+        "claims": []
+      },
+      "rights": {
+        "music_license_status": "valid",
+        "music_license_expires_at": "2026-12-31T23:59:59+08:00",
+        "portrait_release_status": "valid",
+        "third_party_material_status": "cleared"
+      },
+      "compliance": {
+        "content_category": "community_story",
+        "provided_disclosures": []
+      }
+    },
+    {
+      "asset_id": "M03",
+      "asset_version": 2,
+      "title": "全网第一的稳健理财方案",
+      "asset_type": "short_video",
+      "platform": "wechat_channels",
+      "account_id": "acct-brand-main",
+      "duration_seconds": 75,
+      "file_uri": "mock://assets/M03-v2.mp4",
+      "metadata": {
+        "summary": "介绍某理财产品的历史表现。",
+        "transcript_excerpt": "这是全网第一的方案，保证收益并且绝对安全。",
+        "tags": ["finance", "investment", "promotion"],
+        "claims": [
+          {"text": "全网第一", "claim_type": "superiority"},
+          {"text": "保证收益", "claim_type": "guaranteed_return"},
+          {"text": "绝对安全", "claim_type": "absolute_safety"}
+        ]
+      },
+      "rights": {
+        "music_license_status": "valid",
+        "music_license_expires_at": "2027-02-28T23:59:59+08:00",
+        "portrait_release_status": "not_required",
+        "third_party_material_status": "cleared"
+      },
+      "compliance": {
+        "content_category": "financial_promotion",
+        "provided_disclosures": []
+      }
+    },
+    {
+      "asset_id": "M04",
+      "asset_version": 1,
+      "title": "周末园区开放活动预告",
+      "asset_type": "short_video",
+      "platform": "douyin",
+      "account_id": "acct-brand-main",
+      "duration_seconds": 45,
+      "file_uri": "mock://assets/M04-v1.mp4",
+      "metadata": {
+        "summary": "介绍园区开放时间、地点和预约方式。",
+        "transcript_excerpt": "本周末园区开放，欢迎提前预约。",
+        "tags": ["event", "offline"],
+        "claims": []
+      },
+      "rights": {
+        "music_license_status": "expired",
+        "music_license_expires_at": "2026-10-31T23:59:59+08:00",
+        "portrait_release_status": "not_required",
+        "third_party_material_status": "cleared"
+      },
+      "compliance": {
+        "content_category": "event_notice",
+        "provided_disclosures": []
+      }
+    },
+    {
+      "asset_id": "M05",
+      "asset_version": 4,
+      "title": "产品使用技巧",
+      "asset_type": "short_video",
+      "platform": "wechat_channels",
+      "account_id": "acct-brand-main",
+      "duration_seconds": 68,
+      "file_uri": "mock://assets/M05-v4.mp4",
+      "metadata": {
+        "summary": "演示三项常用功能。",
+        "transcript_excerpt": "打开设置页后，可以快速完成同步。",
+        "tags": ["tutorial", "product"],
+        "claims": []
+      },
+      "rights": {
+        "music_license_status": "valid",
+        "music_license_expires_at": "2027-03-31T23:59:59+08:00",
+        "portrait_release_status": "not_required",
+        "third_party_material_status": "cleared"
+      },
+      "compliance": {
+        "content_category": "general_product",
+        "provided_disclosures": []
+      }
+    }
+  ]
+}
+

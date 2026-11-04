@@ -1,0 +1,32 @@
+{
+  "run_id": "27083068-8ba8-437a-9fbe-c73ac1c07efb",
+  "scenario_id": "execution_limit",
+  "request_id": "REQ-M05-LIMIT",
+  "planner_mode": "mock",
+  "model": "deterministic-mock",
+  "overall_status": "incomplete",
+  "completion_reason": "execution_limit_reached",
+  "asset_id": "M05",
+  "review_status": "approved",
+  "risk_reasons": [],
+  "risk_codes": [],
+  "missing_fields": [],
+  "requested_start": "2026-11-10T11:00:00+08:00",
+  "suggested_start": "2026-11-10T11:00:00+08:00",
+  "hard_requirement_changed": false,
+  "hard_requirement_change_authorized": false,
+  "schedule_status": "suggested",
+  "pending_confirmations": [],
+  "pending_confirmation_count": 0,
+  "draft": {
+    "save_status": "not_attempted",
+    "workflow_status": "not_created",
+    "draft_id": null
+  },
+  "published": false,
+  "usage": {
+    "model_steps": 2,
+    "tool_calls": 2
+  },
+  "invocation": 1
+}

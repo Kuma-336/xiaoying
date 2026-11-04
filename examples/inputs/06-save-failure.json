@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "save_failure",
+  "description": "审核和时段检查通过，但草稿存储工具失败，必须明确返回失败。",
+  "request": {
+    "request_id": "REQ-M05-SAVE-FAIL",
+    "asset_id": "M05",
+    "asset_version": 4,
+    "publish_requirement": {
+      "constraint_type": "hard",
+      "requested_start": "2026-11-09T11:00:00+08:00",
+      "allow_agent_to_change": false
+    }
+  },
+  "test_controls": {
+    "state_namespace": "save_failure",
+    "reset_state_before_run": true,
+    "tool_failures": {
+      "save_draft": {
+        "error_code": "storage_unavailable",
+        "message": "草稿存储暂时不可用",
+        "retryable": true
+      }
+    }
+  }
+}
+

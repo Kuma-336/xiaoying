@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "slot_conflict",
+  "description": "M01 要求 18:00，但同账号时段已占用；19:00 可用，只能建议并等待确认。",
+  "request": {
+    "request_id": "REQ-M01-1800",
+    "asset_id": "M01",
+    "asset_version": 3,
+    "publish_requirement": {
+      "constraint_type": "hard",
+      "requested_start": "2026-11-05T18:00:00+08:00",
+      "allow_agent_to_change": false
+    }
+  },
+  "test_controls": {
+    "state_namespace": "slot_conflict",
+    "reset_state_before_run": true
+  }
+}
+

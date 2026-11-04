@@ -1,0 +1,35 @@
+{
+  "run_id": "a57103b8-9b49-44e9-96ab-3e776b4a5d7a",
+  "scenario_id": "save_failure",
+  "request_id": "REQ-M05-SAVE-FAIL",
+  "planner_mode": "mock",
+  "model": "deterministic-mock",
+  "overall_status": "failed",
+  "completion_reason": null,
+  "asset_id": "M05",
+  "review_status": "approved",
+  "risk_reasons": [],
+  "risk_codes": [],
+  "missing_fields": [],
+  "requested_start": "2026-11-09T11:00:00+08:00",
+  "suggested_start": "2026-11-09T11:00:00+08:00",
+  "hard_requirement_changed": false,
+  "hard_requirement_change_authorized": false,
+  "schedule_status": "suggested",
+  "pending_confirmations": [],
+  "pending_confirmation_count": 0,
+  "draft": {
+    "save_status": "failed",
+    "workflow_status": "not_created",
+    "draft_id": null,
+    "error_code": "storage_unavailable",
+    "message": "草稿存储暂时不可用",
+    "retryable": true
+  },
+  "published": false,
+  "usage": {
+    "model_steps": 5,
+    "tool_calls": 4
+  },
+  "invocation": 1
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "execution_limit",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "incomplete",
+    "asset_id": "M05",
+    "completion_reason": "execution_limit_reached",
+    "maximum_agent_steps": 2,
+    "maximum_tool_calls": 2,
+    "draft": {
+      "save_status": "not_attempted",
+      "workflow_status": "not_created"
+    },
+    "published": false
+  },
+  "expected_trace_properties": {
+    "maximum_model_steps": 2,
+    "maximum_recorded_tool_calls": 2,
+    "must_include_runtime_events": ["execution_limit"],
+    "must_include_observations": ["execution_limit_reached"],
+    "must_not_include_actions": ["save_draft", "publish"],
+    "required_adaptation": "达到执行上限后停止循环并明确返回未完成"
+  }
+}
+

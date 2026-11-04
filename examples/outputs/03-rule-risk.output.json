@@ -1,0 +1,57 @@
+{
+  "run_id": "52e44483-42a3-4057-b31b-9ea526bdb9f2",
+  "scenario_id": "rule_risk",
+  "request_id": "REQ-M03-RISK",
+  "planner_mode": "mock",
+  "model": "deterministic-mock",
+  "overall_status": "blocked",
+  "completion_reason": null,
+  "asset_id": "M03",
+  "review_status": "blocked",
+  "risk_reasons": [
+    {
+      "risk_code": "prohibited_claim",
+      "severity": "block",
+      "reason": "命中禁止宣传表述：全网第一, 保证收益, 绝对安全",
+      "matched_terms": [
+        "全网第一",
+        "保证收益",
+        "绝对安全"
+      ]
+    },
+    {
+      "risk_code": "missing_required_disclosure",
+      "severity": "block",
+      "reason": "金融推广缺少投资风险提示"
+    },
+    {
+      "risk_code": "compliance_review_required",
+      "severity": "needs_confirmation",
+      "reason": "金融推广需要合规人员确认"
+    }
+  ],
+  "risk_codes": [
+    "prohibited_claim",
+    "missing_required_disclosure",
+    "compliance_review_required"
+  ],
+  "missing_fields": [],
+  "requested_start": "2026-11-05T16:00:00+08:00",
+  "suggested_start": "2026-11-05T16:00:00+08:00",
+  "hard_requirement_changed": false,
+  "hard_requirement_change_authorized": false,
+  "schedule_status": "not_attempted",
+  "pending_confirmations": [],
+  "pending_confirmation_count": 0,
+  "draft": {
+    "save_status": "not_attempted",
+    "workflow_status": "not_created",
+    "draft_id": null
+  },
+  "published": false,
+  "usage": {
+    "model_steps": 3,
+    "tool_calls": 2
+  },
+  "invocation": 1
+}

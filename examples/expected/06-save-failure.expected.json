@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "save_failure",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "failed",
+    "asset_id": "M05",
+    "review_status": "approved",
+    "risk_codes": [],
+    "requested_start": "2026-11-09T11:00:00+08:00",
+    "suggested_start": "2026-11-09T11:00:00+08:00",
+    "schedule_status": "suggested",
+    "draft": {
+      "save_status": "failed",
+      "workflow_status": "not_created",
+      "draft_id": null,
+      "error_code": "storage_unavailable",
+      "retryable": true
+    },
+    "published": false
+  },
+  "expected_trace_properties": {
+    "must_include_actions": ["read_asset", "check_rules", "query_slots", "save_draft", "finish"],
+    "must_include_observations": ["rules_passed", "requested_slot_available", "draft_save_failed"],
+    "must_not_include_actions": ["publish"],
+    "required_adaptation": "保存工具返回失败后明确结束为 failed，不得虚报草稿已保存"
+  }
+}
+

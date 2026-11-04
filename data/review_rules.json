@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0.0",
+  "rule_set_id": "content-scheduling-policy",
+  "rule_set_version": "2026.11-draft",
+  "status": "draft_pending_owner_confirmation",
+  "severity_levels": {
+    "block": {
+      "rank": 100,
+      "meaning": "禁止进入排期保存，必须阻断并返回原因",
+      "default_next_action": "block"
+    },
+    "needs_information": {
+      "rank": 80,
+      "meaning": "资料不足，必须请求补充后重新检查",
+      "default_next_action": "request_information"
+    },
+    "needs_confirmation": {
+      "rank": 60,
+      "meaning": "可以形成建议草稿，但必须由用户确认",
+      "default_next_action": "request_confirmation"
+    },
+    "warning": {
+      "rank": 40,
+      "meaning": "记录风险，可继续生成待确认草稿",
+      "default_next_action": "continue_with_warning"
+    },
+    "info": {
+      "rank": 10,
+      "meaning": "仅记录，不改变流程",
+      "default_next_action": "continue"
+    }
+  },
+  "metadata_rules": [
+    {
+      "rule_id": "META-001",
+      "name": "通用必填字段",
+      "required_fields": [
+        "asset_id",
+        "asset_version",
+        "title",
+        "asset_type",
+        "platform",
+        "account_id",
+        "file_uri",
+        "metadata.summary",
+        "metadata.tags",
+        "rights.third_party_material_status",
+        "compliance.content_category"
+      ],
+      "empty_values": [null, "", []],
+      "severity": "needs_information",
+      "reason_template": "素材缺少必填字段：{missing_fields}"
+    },
+    {
+      "rule_id": "META-002",
+      "name": "视频时长必填且为正数",
+      "applies_when": {"field": "asset_type", "operator": "equals", "value": "short_video"},
+      "required_fields": ["duration_seconds"],
+      "value_constraint": {"operator": "greater_than", "value": 0},
+      "severity": "needs_information",
+      "reason_template": "视频素材缺少有效时长"
+    },
+    {
+      "rule_id": "META-003",
+      "name": "请求版本必须匹配素材当前版本",
+      "comparison": {
+        "left": "request.asset_version",
+        "operator": "equals",
+        "right": "asset.asset_version"
+      },
+      "severity": "block",
+      "reason_template": "请求版本 {request_version} 与素材当前版本 {asset_version} 不一致"
+    }
+  ],
+  "content_rules": [
+    {
+      "rule_id": "CONTENT-001",
+      "name": "禁止绝对化或无法证明的宣传表述",
+      "search_fields": ["title", "metadata.summary", "metadata.transcript_excerpt", "metadata.claims[*].text"],
+      "match_type": "keyword_any",
+      "keywords": ["全网第一", "保证收益", "绝对安全", "百分百有效", "永久有效", "零风险"],
+      "severity": "block",
+      "reason_template": "命中禁止宣传表述：{matched_terms}"
+    },
+    {
+      "rule_id": "CONTENT-002",
+      "name": "金融推广必须包含投资风险提示",
+      "applies_when": {
+        "field": "compliance.content_category",
+        "operator": "equals",
+        "value": "financial_promotion"
+      },
+      "required_disclosure": "investment_risk_notice",
+      "provided_disclosures_field": "compliance.provided_disclosures",
+      "severity": "block",
+      "reason_template": "金融推广缺少投资风险提示"
+    },
+    {
+      "rule_id": "CONTENT-003",
+      "name": "金融推广需要合规人工复核",
+      "applies_when": {
+        "field": "compliance.content_category",
+        "operator": "equals",
+        "value": "financial_promotion"
+      },
+      "required_confirmation_role": "compliance_reviewer",
+      "severity": "needs_confirmation",
+      "reason_template": "金融推广需要合规人员确认"
+    }
+  ],
+  "rights_rules": [
+    {
+      "rule_id": "RIGHTS-001",
+      "name": "音乐授权在建议发布时间必须有效",
+      "applies_when": {"field": "rights.music_license_status", "operator": "not_equals", "value": "not_required"},
+      "valid_statuses": ["valid"],
+      "expiry_field": "rights.music_license_expires_at",
+      "compare_expiry_with": "proposed_publish_start",
+      "severity": "block",
+      "reason_template": "音乐授权无效或在建议发布时间前已过期"
+    },
+    {
+      "rule_id": "RIGHTS-002",
+      "name": "肖像授权必须有效或明确无需授权",
+      "field": "rights.portrait_release_status",
+      "allowed_values": ["valid", "not_required"],
+      "severity": "block",
+      "reason_template": "肖像授权状态不满足发布要求"
+    },
+    {
+      "rule_id": "RIGHTS-003",
+      "name": "第三方素材必须完成权利清理",
+      "field": "rights.third_party_material_status",
+      "allowed_values": ["cleared", "not_required"],
+      "severity": "block",
+      "reason_template": "第三方素材权利未清理完成"
+    }
+  ],
+  "platform_rules": [
+    {
+      "rule_id": "PLATFORM-001",
+      "platform": "douyin",
+      "asset_type": "short_video",
+      "duration_seconds": {"minimum": 1, "maximum": 60},
+      "severity": "block",
+      "reason_template": "抖音短视频时长必须在 1 到 60 秒之间"
+    },
+    {
+      "rule_id": "PLATFORM-002",
+      "platform": "wechat_channels",
+      "asset_type": "short_video",
+      "duration_seconds": {"minimum": 1, "maximum": 180},
+      "severity": "block",
+      "reason_template": "视频号短视频时长必须在 1 到 180 秒之间"
+    }
+  ],
+  "scheduling_policy": {
+    "slot_granularity_minutes": 60,
+    "minimum_lead_time_minutes": 120,
+    "conflict_scope_fields": ["platform", "account_id"],
+    "capacity_per_scope": 1,
+    "overlap_semantics": "half_open_interval",
+    "interval_formula": "[slot_start, slot_start + slot_granularity_minutes)",
+    "hard_requirement_policy": {
+      "preserve_original_request": true,
+      "agent_may_auto_change": false,
+      "conflict_result": "suggest_alternative_and_request_confirmation",
+      "accepted_alternative_must_match_user_confirmation": true,
+      "output_fields": ["requested_start", "suggested_start", "confirmation_status"]
+    },
+    "alternative_search": {
+      "direction": "forward_first",
+      "search_step_minutes": 60,
+      "max_search_horizon_hours": 72,
+      "max_candidates": 3,
+      "must_respect_publish_windows": true,
+      "must_pass_rights_at_candidate_time": true,
+      "tie_breakers": ["smallest_time_shift", "same_calendar_day", "earlier_candidate"]
+    },
+    "draft_conflict_behavior": {
+      "confirmed": "hard_conflict",
+      "pending_confirmation": "hard_conflict",
+      "draft_saved": "soft_conflict_requires_confirmation",
+      "cancelled": "ignore",
+      "failed": "ignore"
+    }
+  },
+  "confirmation_policy": {
+    "confirmation_types": [
+      "missing_information",
+      "alternative_time",
+      "compliance_review",
+      "soft_draft_conflict",
+      "warning_acknowledgement"
+    ],
+    "valid_statuses": ["not_requested", "pending", "accepted", "rejected", "expired"],
+    "default_expiry_hours": 24,
+    "required_fields": ["confirmation_type", "message", "requested_at", "status"],
+    "alternative_time_acceptance_fields": ["requested_start", "suggested_start", "accepted_by", "accepted_at"]
+  },
+  "draft_save_policy": {
+    "only_draft_save_is_allowed": true,
+    "idempotency_key_fields": ["request_id", "asset_id", "asset_version"],
+    "payload_fingerprint_fields": [
+      "requested_start",
+      "suggested_start",
+      "review_status",
+      "risk_codes",
+      "confirmation_status"
+    ],
+    "on_same_key_same_fingerprint": "return_existing_draft_without_creating_new_record",
+    "on_same_key_different_fingerprint": "return_idempotency_conflict_and_require_new_request_id_or_explicit_update",
+    "save_success_requirements": ["persistent_draft_id", "stored_at", "payload_fingerprint"],
+    "allowed_save_statuses": ["saved", "existing", "failed", "not_attempted"],
+    "allowed_workflow_statuses": ["draft_saved", "pending_confirmation", "not_created"],
+    "forbidden_success_phrases": ["已发布", "发布成功", "已上线"],
+    "save_failure_result": {
+      "save_status": "failed",
+      "workflow_status": "not_created",
+      "must_include_error_code": true,
+      "must_include_retryable": true,
+      "must_not_claim_success": true
+    }
+  },
+  "result_status_matrix": [
+    {
+      "condition": "missing_required_information",
+      "review_status": "incomplete",
+      "schedule_status": "not_attempted",
+      "save_status": "not_attempted",
+      "workflow_status": "not_created",
+      "next_action": "request_information"
+    },
+    {
+      "condition": "blocking_risk_found",
+      "review_status": "blocked",
+      "schedule_status": "not_attempted",
+      "save_status": "not_attempted",
+      "workflow_status": "not_created",
+      "next_action": "block"
+    },
+    {
+      "condition": "review_passed_and_requested_slot_available",
+      "review_status": "approved",
+      "schedule_status": "suggested",
+      "save_status": "saved",
+      "workflow_status": "draft_saved",
+      "next_action": "finish"
+    },
+    {
+      "condition": "review_passed_but_requested_slot_conflicts",
+      "review_status": "approved",
+      "schedule_status": "alternative_suggested",
+      "save_status": "not_attempted",
+      "workflow_status": "not_created",
+      "next_action": "request_confirmation"
+    },
+    {
+      "condition": "alternative_confirmed_and_rechecked_available",
+      "review_status": "approved",
+      "schedule_status": "suggested",
+      "save_status": "saved",
+      "workflow_status": "draft_saved",
+      "next_action": "finish"
+    },
+    {
+      "condition": "draft_save_failed",
+      "review_status": "preserve_previous_result",
+      "schedule_status": "preserve_previous_result",
+      "save_status": "failed",
+      "workflow_status": "not_created",
+      "next_action": "finish_failed"
+    }
+  ]
+}
+

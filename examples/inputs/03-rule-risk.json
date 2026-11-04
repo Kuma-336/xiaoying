@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "rule_risk",
+  "description": "M03 包含禁止宣传表述且缺少金融风险提示，应阻断排期。",
+  "request": {
+    "request_id": "REQ-M03-RISK",
+    "asset_id": "M03",
+    "asset_version": 2,
+    "publish_requirement": {
+      "constraint_type": "hard",
+      "requested_start": "2026-11-05T16:00:00+08:00",
+      "allow_agent_to_change": false
+    }
+  },
+  "test_controls": {
+    "state_namespace": "rule_risk",
+    "reset_state_before_run": true
+  }
+}
+

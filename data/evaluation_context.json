@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0.0",
+  "data_classification": "synthetic",
+  "evaluation_clock": "2026-11-04T10:00:00+08:00",
+  "timezone": "Asia/Singapore",
+  "active_rule_set_id": "content-scheduling-policy",
+  "active_rule_set_version": "2026.11-draft",
+  "execution_limits": {
+    "max_agent_steps_per_asset": 10,
+    "max_tool_calls_per_asset": 8,
+    "on_limit_reached": {
+      "completion_status": "incomplete",
+      "reason_code": "execution_limit_reached"
+    }
+  }
+}
+

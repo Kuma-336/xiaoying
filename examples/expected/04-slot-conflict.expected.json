@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "slot_conflict",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "pending_confirmation",
+    "asset_id": "M01",
+    "review_status": "approved",
+    "risk_codes": [],
+    "requested_start": "2026-11-05T18:00:00+08:00",
+    "suggested_start": "2026-11-05T19:00:00+08:00",
+    "hard_requirement_changed": false,
+    "schedule_status": "alternative_suggested",
+    "pending_confirmations": [
+      {
+        "confirmation_type": "alternative_time",
+        "status": "pending",
+        "requested_start": "2026-11-05T18:00:00+08:00",
+        "suggested_start": "2026-11-05T19:00:00+08:00"
+      }
+    ],
+    "draft": {
+      "save_status": "not_attempted",
+      "workflow_status": "not_created",
+      "draft_id_required": false
+    },
+    "published": false
+  },
+  "expected_trace_properties": {
+    "must_include_actions": ["read_asset", "check_rules", "query_slots", "request_confirmation"],
+    "must_include_observations": ["requested_slot_conflict", "alternative_slot_available", "confirmation_pending"],
+    "must_not_include_actions": ["save_draft", "publish"],
+    "required_adaptation": "18:00 冲突后建议 19:00，未经确认不得保存草稿"
+  }
+}
+
+

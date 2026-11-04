@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0.0",
+  "schedule_items": [
+    {
+      "schedule_id": "SCH-001",
+      "request_id": "REQ-EXIST-001",
+      "asset_id": "EXIST-VIDEO-001",
+      "platform": "wechat_channels",
+      "account_id": "acct-brand-main",
+      "start": "2026-11-05T18:00:00+08:00",
+      "end": "2026-11-05T19:00:00+08:00",
+      "status": "confirmed"
+    },
+    {
+      "schedule_id": "SCH-002",
+      "request_id": "REQ-EXIST-002",
+      "asset_id": "EXIST-VIDEO-002",
+      "platform": "wechat_channels",
+      "account_id": "acct-brand-main",
+      "start": "2026-11-05T20:00:00+08:00",
+      "end": "2026-11-05T21:00:00+08:00",
+      "status": "pending_confirmation"
+    },
+    {
+      "schedule_id": "SCH-003",
+      "request_id": "REQ-EXIST-003",
+      "asset_id": "EXIST-VIDEO-003",
+      "platform": "douyin",
+      "account_id": "acct-community-main",
+      "start": "2026-11-05T17:00:00+08:00",
+      "end": "2026-11-05T18:00:00+08:00",
+      "status": "draft_saved"
+    },
+    {
+      "schedule_id": "SCH-004",
+      "request_id": "REQ-EXIST-004",
+      "asset_id": "EXIST-VIDEO-004",
+      "platform": "douyin",
+      "account_id": "acct-brand-main",
+      "start": "2026-11-05T18:00:00+08:00",
+      "end": "2026-11-05T19:00:00+08:00",
+      "status": "confirmed"
+    },
+    {
+      "schedule_id": "SCH-005",
+      "request_id": "REQ-EXIST-005",
+      "asset_id": "EXIST-VIDEO-005",
+      "platform": "wechat_channels",
+      "account_id": "acct-brand-main",
+      "start": "2026-11-05T19:00:00+08:00",
+      "end": "2026-11-05T20:00:00+08:00",
+      "status": "cancelled"
+    }
+  ]
+}
+

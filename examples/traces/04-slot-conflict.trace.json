@@ -1,0 +1,81 @@
+{
+  "scenario_id": "slot_conflict",
+  "planner_mode": "mock",
+  "invocations": [
+    {
+      "invocation": 1,
+      "steps": [
+        {
+          "step": 1,
+          "model": "deterministic-mock",
+          "selected_action": "read_asset",
+          "tool_parameters": {
+            "asset_id": "M01",
+            "asset_version": 3
+          },
+          "tool_result_summary": "素材已读取；缺失字段：无",
+          "next_action": "check_rules",
+          "decision_basis": "先读取素材并确认信息完整性。",
+          "timestamp": "2026-11-04T14:41:49.584979+00:00"
+        },
+        {
+          "step": 2,
+          "model": "deterministic-mock",
+          "selected_action": "check_rules",
+          "tool_parameters": {
+            "asset_id": "M01",
+            "asset_version": 3,
+            "proposed_start": "2026-11-05T18:00:00+08:00"
+          },
+          "tool_result_summary": "规则检查完成；通过=True；风险=[]",
+          "next_action": "query_slots",
+          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
+          "timestamp": "2026-11-04T14:41:49.584979+00:00"
+        },
+        {
+          "step": 3,
+          "model": "deterministic-mock",
+          "selected_action": "query_slots",
+          "tool_parameters": {
+            "request_id": "REQ-M01-1800",
+            "asset_id": "M01",
+            "candidate_start": "2026-11-05T18:00:00+08:00",
+            "latest_start": null
+          },
+          "tool_result_summary": "候选时段冲突；替代=['2026-11-05T19:00:00+08:00', '2026-11-06T09:00:00+08:00', '2026-11-06T10:00:00+08:00']",
+          "next_action": "request_confirmation",
+          "decision_basis": "规则通过，查询用户要求或已确认的候选时段。",
+          "timestamp": "2026-11-04T14:41:49.588811+00:00"
+        },
+        {
+          "step": 4,
+          "model": "deterministic-mock",
+          "selected_action": "request_confirmation",
+          "tool_parameters": {
+            "request_id": "REQ-M01-1800",
+            "confirmation_type": "alternative_time",
+            "requested_start": "2026-11-05T18:00:00+08:00",
+            "suggested_start": "2026-11-05T19:00:00+08:00",
+            "message": "2026-11-05T18:00:00+08:00 已占用，是否接受 2026-11-05T19:00:00+08:00？"
+          },
+          "tool_result_summary": "已登记待确认项：alternative_time",
+          "next_action": "finish",
+          "decision_basis": "要求时段冲突，只建议替代时间，未经确认不保存草稿。",
+          "timestamp": "2026-11-04T14:41:49.588811+00:00"
+        },
+        {
+          "step": 5,
+          "model": "deterministic-mock",
+          "selected_action": "finish",
+          "tool_parameters": {
+            "completion_status": "pending_confirmation"
+          },
+          "tool_result_summary": "工具执行成功",
+          "next_action": null,
+          "decision_basis": "替代时段已提出，等待用户确认。",
+          "timestamp": "2026-11-04T14:41:49.588811+00:00"
+        }
+      ]
+    }
+  ]
+}

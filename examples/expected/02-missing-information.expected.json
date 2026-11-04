@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "missing_information",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "incomplete",
+    "asset_id": "M02",
+    "review_status": "incomplete",
+    "missing_fields_must_include": ["duration_seconds"],
+    "schedule_status": "not_attempted",
+    "pending_confirmations": [
+      {
+        "confirmation_type": "missing_information",
+        "status": "pending"
+      }
+    ],
+    "draft": {
+      "save_status": "not_attempted",
+      "workflow_status": "not_created"
+    },
+    "published": false
+  },
+  "expected_trace_properties": {
+    "must_include_actions": ["read_asset", "request_information"],
+    "must_include_observations": ["missing_required_information"],
+    "must_not_include_actions": ["query_slots", "save_draft", "publish"],
+    "required_adaptation": "素材读取返回时长缺失后改为请求补充信息"
+  }
+}
+

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "confirmed_alternative",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "completed",
+    "asset_id": "M01",
+    "review_status": "approved",
+    "requested_start": "2026-11-05T18:00:00+08:00",
+    "suggested_start": "2026-11-05T19:00:00+08:00",
+    "hard_requirement_changed": false,
+    "hard_requirement_change_authorized": true,
+    "schedule_status": "suggested",
+    "pending_confirmation_count": 0,
+    "draft": {
+      "save_status": "saved",
+      "workflow_status": "draft_saved",
+      "draft_id_required": true
+    },
+    "published": false
+  },
+  "expected_trace_properties": {
+    "must_include_actions": ["read_asset", "check_rules", "query_slots", "save_draft"],
+    "must_include_observations": ["accepted_alternative_rechecked", "alternative_slot_available", "draft_saved"],
+    "must_not_include_actions": ["publish"],
+    "required_adaptation": "用户接受 19:00 后重新查询该时段，仍可用才保存草稿"
+  }
+}
+

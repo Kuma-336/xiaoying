@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "normal_schedule",
+  "description": "素材审核通过且请求时段可用，应保存一份正常排期草稿。",
+  "request": {
+    "request_id": "REQ-M05-NORMAL",
+    "asset_id": "M05",
+    "asset_version": 4,
+    "publish_requirement": {
+      "constraint_type": "hard",
+      "requested_start": "2026-11-07T11:00:00+08:00",
+      "allow_agent_to_change": false
+    }
+  },
+  "test_controls": {
+    "state_namespace": "normal_schedule",
+    "reset_state_before_run": true
+  }
+}
+

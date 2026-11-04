@@ -1,0 +1,44 @@
+{
+  "run_id": "c7aa81a9-0501-4973-8343-e1bf4c212321",
+  "scenario_id": "missing_information",
+  "request_id": "REQ-M02-FLEX",
+  "planner_mode": "mock",
+  "model": "deterministic-mock",
+  "overall_status": "incomplete",
+  "completion_reason": null,
+  "asset_id": "M02",
+  "review_status": "incomplete",
+  "risk_reasons": [],
+  "risk_codes": [],
+  "missing_fields": [
+    "duration_seconds"
+  ],
+  "requested_start": "2026-11-05T15:00:00+08:00",
+  "suggested_start": "2026-11-05T15:00:00+08:00",
+  "hard_requirement_changed": false,
+  "hard_requirement_change_authorized": false,
+  "schedule_status": "not_attempted",
+  "pending_confirmations": [
+    {
+      "ok": true,
+      "confirmation_type": "missing_information",
+      "status": "pending",
+      "missing_fields": [
+        "duration_seconds"
+      ],
+      "message": "请补充素材字段：duration_seconds"
+    }
+  ],
+  "pending_confirmation_count": 1,
+  "draft": {
+    "save_status": "not_attempted",
+    "workflow_status": "not_created",
+    "draft_id": null
+  },
+  "published": false,
+  "usage": {
+    "model_steps": 3,
+    "tool_calls": 2
+  },
+  "invocation": 1
+}

@@ -1,0 +1,50 @@
+{
+  "scenario_id": "rule_risk",
+  "planner_mode": "mock",
+  "invocations": [
+    {
+      "invocation": 1,
+      "steps": [
+        {
+          "step": 1,
+          "model": "deterministic-mock",
+          "selected_action": "read_asset",
+          "tool_parameters": {
+            "asset_id": "M03",
+            "asset_version": 2
+          },
+          "tool_result_summary": "素材已读取；缺失字段：无",
+          "next_action": "check_rules",
+          "decision_basis": "先读取素材并确认信息完整性。",
+          "timestamp": "2026-11-04T14:41:49.574555+00:00"
+        },
+        {
+          "step": 2,
+          "model": "deterministic-mock",
+          "selected_action": "check_rules",
+          "tool_parameters": {
+            "asset_id": "M03",
+            "asset_version": 2,
+            "proposed_start": "2026-11-05T16:00:00+08:00"
+          },
+          "tool_result_summary": "规则检查完成；通过=False；风险=['prohibited_claim', 'missing_required_disclosure', 'compliance_review_required']",
+          "next_action": "finish",
+          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
+          "timestamp": "2026-11-04T14:41:49.574555+00:00"
+        },
+        {
+          "step": 3,
+          "model": "deterministic-mock",
+          "selected_action": "finish",
+          "tool_parameters": {
+            "completion_status": "blocked"
+          },
+          "tool_result_summary": "工具执行成功",
+          "next_action": null,
+          "decision_basis": "发现阻断风险，禁止进入排期和保存。",
+          "timestamp": "2026-11-04T14:41:49.574555+00:00"
+        }
+      ]
+    }
+  ]
+}

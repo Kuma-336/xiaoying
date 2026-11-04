@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "rule_risk",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "blocked",
+    "asset_id": "M03",
+    "review_status": "blocked",
+    "risk_codes_must_include": ["prohibited_claim", "missing_required_disclosure"],
+    "matched_terms_must_include": ["全网第一", "保证收益", "绝对安全"],
+    "schedule_status": "not_attempted",
+    "pending_confirmation_count": 0,
+    "draft": {
+      "save_status": "not_attempted",
+      "workflow_status": "not_created"
+    },
+    "published": false
+  },
+  "expected_trace_properties": {
+    "must_include_actions": ["read_asset", "check_rules", "finish"],
+    "must_include_observations": ["blocking_risk_found"],
+    "must_not_include_actions": ["query_slots", "save_draft", "publish"],
+    "required_adaptation": "规则工具返回阻断风险后以 blocked 状态结束，停止时段查询和草稿保存"
+  }
+}
+

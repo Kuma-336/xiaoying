@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0.0",
+  "requests": [
+    {
+      "request_id": "REQ-M01-1800",
+      "asset_id": "M01",
+      "asset_version": 3,
+      "publish_requirement": {
+        "constraint_type": "hard",
+        "requested_start": "2026-11-05T18:00:00+08:00",
+        "allow_agent_to_change": false
+      }
+    },
+    {
+      "request_id": "REQ-M02-FLEX",
+      "asset_id": "M02",
+      "asset_version": 1,
+      "publish_requirement": {
+        "constraint_type": "window",
+        "earliest_start": "2026-11-05T15:00:00+08:00",
+        "latest_start": "2026-11-05T20:00:00+08:00",
+        "allow_agent_to_change": false
+      }
+    },
+    {
+      "request_id": "REQ-M03-RISK",
+      "asset_id": "M03",
+      "asset_version": 2,
+      "publish_requirement": {
+        "constraint_type": "hard",
+        "requested_start": "2026-11-05T16:00:00+08:00",
+        "allow_agent_to_change": false
+      }
+    },
+    {
+      "request_id": "REQ-M04-RIGHTS",
+      "asset_id": "M04",
+      "asset_version": 1,
+      "publish_requirement": {
+        "constraint_type": "hard",
+        "requested_start": "2026-11-06T12:00:00+08:00",
+        "allow_agent_to_change": false
+      }
+    },
+    {
+      "request_id": "REQ-M05-NORMAL",
+      "asset_id": "M05",
+      "asset_version": 4,
+      "publish_requirement": {
+        "constraint_type": "hard",
+        "requested_start": "2026-11-07T11:00:00+08:00",
+        "allow_agent_to_change": false
+      }
+    }
+  ]
+}
+

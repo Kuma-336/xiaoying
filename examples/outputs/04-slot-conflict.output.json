@@ -1,0 +1,42 @@
+{
+  "run_id": "5a887e38-0a1f-4cdf-afe6-28d7529efd16",
+  "scenario_id": "slot_conflict",
+  "request_id": "REQ-M01-1800",
+  "planner_mode": "mock",
+  "model": "deterministic-mock",
+  "overall_status": "pending_confirmation",
+  "completion_reason": null,
+  "asset_id": "M01",
+  "review_status": "approved",
+  "risk_reasons": [],
+  "risk_codes": [],
+  "missing_fields": [],
+  "requested_start": "2026-11-05T18:00:00+08:00",
+  "suggested_start": "2026-11-05T19:00:00+08:00",
+  "hard_requirement_changed": false,
+  "hard_requirement_change_authorized": false,
+  "schedule_status": "alternative_suggested",
+  "pending_confirmations": [
+    {
+      "ok": true,
+      "request_id": "REQ-M01-1800",
+      "confirmation_type": "alternative_time",
+      "status": "pending",
+      "requested_start": "2026-11-05T18:00:00+08:00",
+      "suggested_start": "2026-11-05T19:00:00+08:00",
+      "message": "2026-11-05T18:00:00+08:00 已占用，是否接受 2026-11-05T19:00:00+08:00？"
+    }
+  ],
+  "pending_confirmation_count": 1,
+  "draft": {
+    "save_status": "not_attempted",
+    "workflow_status": "not_created",
+    "draft_id": null
+  },
+  "published": false,
+  "usage": {
+    "model_steps": 5,
+    "tool_calls": 4
+  },
+  "invocation": 1
+}

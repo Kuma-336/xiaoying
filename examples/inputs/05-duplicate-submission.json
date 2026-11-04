@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "duplicate_submission",
+  "description": "在同一状态目录连续提交两次完全相同的请求，第二次必须返回已有草稿。",
+  "request": {
+    "request_id": "REQ-M05-DUPLICATE",
+    "asset_id": "M05",
+    "asset_version": 4,
+    "publish_requirement": {
+      "constraint_type": "hard",
+      "requested_start": "2026-11-08T11:00:00+08:00",
+      "allow_agent_to_change": false
+    }
+  },
+  "test_controls": {
+    "state_namespace": "duplicate_submission",
+    "reset_state_before_first_run": true,
+    "repeat_count": 2,
+    "preserve_state_between_runs": true
+  }
+}
+

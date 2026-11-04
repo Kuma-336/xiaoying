@@ -1,0 +1,33 @@
+{
+  "run_id": "f15fcfec-ee5a-47e4-9f86-c5bcb85c8fb5",
+  "scenario_id": "normal_schedule",
+  "request_id": "REQ-M05-NORMAL",
+  "planner_mode": "mock",
+  "model": "deterministic-mock",
+  "overall_status": "completed",
+  "completion_reason": null,
+  "asset_id": "M05",
+  "review_status": "approved",
+  "risk_reasons": [],
+  "risk_codes": [],
+  "missing_fields": [],
+  "requested_start": "2026-11-07T11:00:00+08:00",
+  "suggested_start": "2026-11-07T11:00:00+08:00",
+  "hard_requirement_changed": false,
+  "hard_requirement_change_authorized": false,
+  "schedule_status": "suggested",
+  "pending_confirmations": [],
+  "pending_confirmation_count": 0,
+  "draft": {
+    "save_status": "saved",
+    "workflow_status": "draft_saved",
+    "draft_id": "DR-189F9D55DC3E",
+    "created_new_draft": true
+  },
+  "published": false,
+  "usage": {
+    "model_steps": 5,
+    "tool_calls": 4
+  },
+  "invocation": 1
+}

@@ -1,0 +1,51 @@
+{
+  "scenario_id": "missing_information",
+  "planner_mode": "mock",
+  "invocations": [
+    {
+      "invocation": 1,
+      "steps": [
+        {
+          "step": 1,
+          "model": "deterministic-mock",
+          "selected_action": "read_asset",
+          "tool_parameters": {
+            "asset_id": "M02",
+            "asset_version": 1
+          },
+          "tool_result_summary": "素材已读取；缺失字段：duration_seconds",
+          "next_action": "request_information",
+          "decision_basis": "先读取素材并确认信息完整性。",
+          "timestamp": "2026-11-04T14:41:49.563733+00:00"
+        },
+        {
+          "step": 2,
+          "model": "deterministic-mock",
+          "selected_action": "request_information",
+          "tool_parameters": {
+            "missing_fields": [
+              "duration_seconds"
+            ],
+            "message": "请补充素材字段：duration_seconds"
+          },
+          "tool_result_summary": "已登记待确认项：missing_information",
+          "next_action": "finish",
+          "decision_basis": "素材信息不足，无法安全审核和排期。",
+          "timestamp": "2026-11-04T14:41:49.563733+00:00"
+        },
+        {
+          "step": 3,
+          "model": "deterministic-mock",
+          "selected_action": "finish",
+          "tool_parameters": {
+            "completion_status": "incomplete"
+          },
+          "tool_result_summary": "工具执行成功",
+          "next_action": null,
+          "decision_basis": "已登记资料补充请求，等待用户提供信息。",
+          "timestamp": "2026-11-04T14:41:49.563733+00:00"
+        }
+      ]
+    }
+  ]
+}

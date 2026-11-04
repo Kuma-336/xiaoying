@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "duplicate_submission",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "completed",
+    "asset_id": "M05",
+    "expected_invocation_count": 2,
+    "invocations": [
+      {
+        "invocation": 1,
+        "draft_save_status": "saved",
+        "created_new_draft": true,
+        "draft_id_required": true,
+        "published": false
+      },
+      {
+        "invocation": 2,
+        "draft_save_status": "existing",
+        "created_new_draft": false,
+        "draft_id_must_equal_invocation": 1,
+        "published": false
+      }
+    ],
+    "persistent_draft_count": 1,
+    "published": false
+  },
+  "expected_trace_properties": {
+    "each_invocation_must_include_actions": ["read_asset", "check_rules", "query_slots", "save_draft"],
+    "second_invocation_must_include_observations": ["idempotency_key_matched", "existing_draft_returned"],
+    "must_not_include_actions": ["publish"],
+    "required_adaptation": "第二次保存观察到相同幂等键和负载后返回原草稿，不新增记录"
+  }
+}
+
