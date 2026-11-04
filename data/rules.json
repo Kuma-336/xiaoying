@@ -1,9 +1,0 @@
-{
-  "required_asset_fields": ["title", "description", "platform", "duration_seconds", "content_tags"],
-  "forbidden_terms": ["全网第一", "保证收益", "绝对安全"],
-  "platform_duration_limits": {
-    "wechat_video": 180,
-    "douyin": 60
-  }
-}
-
