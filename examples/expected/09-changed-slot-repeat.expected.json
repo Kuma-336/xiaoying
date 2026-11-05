@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "changed_slot_repeat",
+  "evidence_type": "expected_not_actual",
+  "expected_result": {
+    "overall_status": "completed",
+    "asset_id": "M01",
+    "requested_start": "2026-11-05T18:00:00+08:00",
+    "suggested_start": "2026-11-05T18:00:00+08:00",
+    "expected_invocation_count": 2,
+    "invocations": [
+      {
+        "invocation": 1,
+        "draft_save_status": "saved",
+        "created_new_draft": true
+      },
+      {
+        "invocation": 2,
+        "draft_save_status": "existing",
+        "created_new_draft": false,
+        "draft_id_must_equal_invocation": 1
+      }
+    ],
+    "persistent_draft_count": 1,
+    "published": false
+  },
+  "expected_trace_properties": {
+    "each_invocation_must_include_actions": ["read_asset", "check_rules", "query_slots", "save_draft", "finish"],
+    "must_not_include_actions": ["request_confirmation", "publish"],
+    "required_adaptation": "SCH-001 移到 19:00 后，原硬性时段 18:00 恢复可用；重复保存返回原草稿"
+  }
+}

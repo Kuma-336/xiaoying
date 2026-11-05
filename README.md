@@ -72,6 +72,7 @@ uv run python -m src.cli run-suite --planner deepseek
 | 重复提交 | 第二次返回原草稿，持久化记录仍为一条 |
 | 保存失败 | 明确返回 `failed` 和错误码 |
 | 执行上限 | 返回 `incomplete / execution_limit_reached` |
+| 更换占用时段并重复提交 | 占用移到 19:00 后恢复 18:00，第二次返回原草稿 |
 
 ## 安全边界
 

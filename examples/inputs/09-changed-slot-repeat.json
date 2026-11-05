@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "changed_slot_repeat",
+  "description": "将 SCH-001 从 18:00 改到 19:00 后重复提交 M01；18:00 应恢复可用，且只产生一份草稿。",
+  "request": {
+    "request_id": "REQ-M01-CHANGED-SLOT",
+    "asset_id": "M01",
+    "asset_version": 3,
+    "publish_requirement": {
+      "constraint_type": "hard",
+      "requested_start": "2026-11-05T18:00:00+08:00",
+      "allow_agent_to_change": false
+    }
+  },
+  "test_controls": {
+    "state_namespace": "changed_slot_repeat",
+    "reset_state_before_first_run": true,
+    "repeat_count": 2,
+    "preserve_state_between_runs": true,
+    "schedule_overrides": [
+      {
+        "schedule_id": "SCH-001",
+        "start": "2026-11-05T19:00:00+08:00",
+        "end": "2026-11-05T20:00:00+08:00"
+      }
+    ]
+  }
+}

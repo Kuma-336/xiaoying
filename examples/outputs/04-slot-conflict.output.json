@@ -1,5 +1,5 @@
 {
-  "run_id": "680f7bdc-eb52-428c-b96c-3dfe60c1f553",
+  "run_id": "317f81d6-85d3-48af-9d8c-222c6c341536",
   "scenario_id": "slot_conflict",
   "request_id": "REQ-M01-1800",
   "planner_mode": "deepseek",
@@ -20,11 +20,11 @@
     {
       "ok": true,
       "request_id": "REQ-M01-1800",
-      "confirmation_type": "alternative_slot",
+      "confirmation_type": "alternative_time",
       "status": "pending",
       "requested_start": "2026-11-05T18:00:00+08:00",
       "suggested_start": "2026-11-05T19:00:00+08:00",
-      "message": "M01 v3 内容与授权检查通过，但您指定的硬性时间 2026-11-05 18:00 与既有排期 SCH-001 存在硬冲突，不可用。可用替代时段：2026-11-05 19:00、2026-11-06 09:00、2026-11-06 10:00。请确认是否接受其中某一时段；未获确认前不保存排期草稿。"
+      "message": "您指定的 2026-11-05 18:00 与既有排期 SCH-001 存在硬性冲突，且该时段为不可自行更改的硬性要求。可用替代时段：2026-11-05 19:00、2026-11-06 09:00、2026-11-06 10:00。本次建议 2026-11-05 19:00，请确认是否接受替代时段。"
     }
   ],
   "pending_confirmation_count": 1,

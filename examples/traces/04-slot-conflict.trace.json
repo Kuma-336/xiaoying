@@ -15,8 +15,8 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：无",
           "next_action": "check_rules",
-          "decision_basis": "请求需核对 M01 v3 的素材元数据与缺失字段",
-          "timestamp": "2026-11-05T01:19:21.554774+00:00"
+          "decision_basis": "需要核对 M01 版本 3 的元数据与缺失字段，才能继续排期处理。",
+          "timestamp": "2026-11-05T02:06:22.584421+00:00"
         },
         {
           "step": 2,
@@ -29,8 +29,8 @@
           },
           "tool_result_summary": "规则检查完成；通过=True；风险=[]",
           "next_action": "query_slots",
-          "decision_basis": "需按用户指定的硬性时间核验素材内容与平台授权风险",
-          "timestamp": "2026-11-05T01:19:22.689212+00:00"
+          "decision_basis": "版权与合规字段完整，需按用户硬性要求的 18:00 时点核验授权与平台规则风险。",
+          "timestamp": "2026-11-05T02:06:24.086456+00:00"
         },
         {
           "step": 3,
@@ -44,8 +44,8 @@
           },
           "tool_result_summary": "候选时段冲突；替代=['2026-11-05T19:00:00+08:00', '2026-11-06T09:00:00+08:00', '2026-11-06T10:00:00+08:00']",
           "next_action": "request_confirmation",
-          "decision_basis": "硬性时间为 2026-11-05T18:00:00+08:00，需查询该时段是否可用",
-          "timestamp": "2026-11-05T01:19:23.722477+00:00"
+          "decision_basis": "规则检查通过，需确认用户指定的 2026-11-05 18:00 时段是否可用。",
+          "timestamp": "2026-11-05T02:06:25.536705+00:00"
         },
         {
           "step": 4,
@@ -53,15 +53,15 @@
           "selected_action": "request_confirmation",
           "tool_parameters": {
             "request_id": "REQ-M01-1800",
-            "confirmation_type": "alternative_slot",
+            "confirmation_type": "alternative_time",
             "requested_start": "2026-11-05T18:00:00+08:00",
             "suggested_start": "2026-11-05T19:00:00+08:00",
-            "message": "M01 v3 内容与授权检查通过，但您指定的硬性时间 2026-11-05 18:00 与既有排期 SCH-001 存在硬冲突，不可用。可用替代时段：2026-11-05 19:00、2026-11-06 09:00、2026-11-06 10:00。请确认是否接受其中某一时段；未获确认前不保存排期草稿。"
+            "message": "您指定的 2026-11-05 18:00 与既有排期 SCH-001 存在硬性冲突，且该时段为不可自行更改的硬性要求。可用替代时段：2026-11-05 19:00、2026-11-06 09:00、2026-11-06 10:00。本次建议 2026-11-05 19:00，请确认是否接受替代时段。"
           },
-          "tool_result_summary": "已登记待确认项：alternative_slot",
+          "tool_result_summary": "已登记待确认项：alternative_time",
           "next_action": "finish",
-          "decision_basis": "指定硬性时段与既有排期 SCH-001 冲突，需用户确认替代时间",
-          "timestamp": "2026-11-05T01:19:26.030096+00:00"
+          "decision_basis": "查询时段返回硬性冲突 SCH-001，用户硬性时段不得擅自修改，需以 alternative_time 征得确认。",
+          "timestamp": "2026-11-05T02:06:27.188367+00:00"
         },
         {
           "step": 5,
@@ -72,8 +72,8 @@
           },
           "tool_result_summary": "工具执行成功",
           "next_action": null,
-          "decision_basis": "素材检查通过但硬性时段与 SCH-001 冲突，已登记替代时段确认请求，未保存草稿",
-          "timestamp": "2026-11-05T01:19:26.990413+00:00"
+          "decision_basis": "素材版本 3 字段完整且规则检查通过，但硬性要求时段 2026-11-05 18:00 与 SCH-001 硬性冲突，已登记替代时段确认请求，待用户回复。",
+          "timestamp": "2026-11-05T02:06:28.273226+00:00"
         }
       ]
     }

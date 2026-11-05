@@ -83,6 +83,15 @@ class AgentRuntime:
         extra = [field for field in action.arguments if field not in schema["properties"]]
         if missing or extra:
             return self._error("invalid_action_arguments", f"缺少={missing}，多余={extra}")
+        invalid_enums = [
+            field
+            for field, definition in schema["properties"].items()
+            if "enum" in definition
+            and field in action.arguments
+            and action.arguments[field] not in definition["enum"]
+        ]
+        if invalid_enums:
+            return self._error("invalid_action_arguments", f"枚举值不合法：{invalid_enums}")
         if action.name == "finish" and action.arguments["completion_status"] not in {
             "completed",
             "incomplete",
@@ -98,6 +107,23 @@ class AgentRuntime:
             return self._error("asset_version_mismatch", "动作素材版本与当前请求不一致")
         if action.arguments.get("request_id", request["request_id"]) != request["request_id"]:
             return self._error("request_mismatch", "动作请求 ID 与当前请求不一致")
+        if action.name == "request_information":
+            read = state.last_observation("read_asset") or {}
+            actual_missing = sorted(read.get("missing_fields", []))
+            requested_missing = sorted(action.arguments["missing_fields"])
+            if not actual_missing or requested_missing != actual_missing:
+                return self._error("unsafe_sequence", "只有素材确实缺少字段时才能请求补充信息")
+        if action.name == "request_confirmation":
+            slots = state.last_observation("query_slots") or {}
+            alternatives = slots.get("alternatives", [])
+            requirement = request["publish_requirement"]
+            requested = requirement.get("requested_start") or requirement.get("earliest_start")
+            if (
+                slots.get("available") is not False
+                or action.arguments["requested_start"] != requested
+                or action.arguments["suggested_start"] not in alternatives
+            ):
+                return self._error("unsafe_sequence", "替代时间确认必须基于最近一次冲突查询的候选结果")
         if action.name != "save_draft":
             return None
         read = state.last_observation("read_asset") or {}
@@ -190,8 +216,14 @@ class AgentRuntime:
         read = state.last_observation("read_asset") or {}
         rules = state.last_observation("check_rules") or {}
         slots = state.last_observation("query_slots") or {}
-        info = state.last_observation("request_information")
-        confirmation = state.last_observation("request_confirmation")
+        info_observation = state.last_observation("request_information")
+        confirmation_observation = state.last_observation("request_confirmation")
+        info = info_observation if info_observation and info_observation.get("ok") else None
+        confirmation = (
+            confirmation_observation
+            if confirmation_observation and confirmation_observation.get("ok")
+            else None
+        )
         saved = state.last_observation("save_draft")
         risks = rules.get("risks", [])
         blocking = any(risk.get("severity") in {"block", "needs_information"} for risk in risks)

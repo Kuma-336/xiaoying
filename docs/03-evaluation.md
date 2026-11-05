@@ -8,7 +8,7 @@
 uv run python -m unittest discover -s tests -v
 ```
 
-实际结果：11 项测试全部通过，覆盖八个业务场景、时段基准、安全守卫和 Trace 字段。测试摘要保存于 `examples/test-results.txt`。
+实际结果：14 项测试全部通过，覆盖九个业务场景、时段变更、确认类型枚举、安全守卫和 Trace 字段。测试摘要保存于 `examples/test-results.txt`。
 
 ## 场景结果
 
@@ -22,6 +22,7 @@ uv run python -m unittest discover -s tests -v
 | 保存失败 | `failed / storage_unavailable` | `06-save-failure.*.json` |
 | 执行上限 | `incomplete / execution_limit_reached` | `07-execution-limit.*.json` |
 | 确认闭环 | 重新查询 19:00 后 `completed / saved` | `08-confirmed-alternative.*.json` |
+| 更换占用并重复提交 | SCH-001 移到 19:00；18:00 恢复可用；`saved → existing`，草稿总数 1 | `09-changed-slot-repeat.*.json` |
 
 输出位于 `examples/outputs/`，逐步记录位于 `examples/traces/`。当前文件均于 2026-11-05 由 CLI 调用 `deepseek-flash` 实际生成，并明确标记 `planner_mode=deepseek`。
 
@@ -39,7 +40,7 @@ uv run python -m unittest discover -s tests -v
 uv run python -m src.cli run-suite --planner deepseek
 ```
 
-八个场景全部完成，业务不变量错误为 0，Trace 字段错误为 0，所有输出均为 `published=false`。密钥只存在于被 Git 忽略的 `.env`，仓库文件扫描未发现密钥格式。
+九个场景全部完成，业务不变量错误为 0，Trace 字段错误为 0，所有输出均为 `published=false`。密钥只存在于被 Git 忽略的 `.env`，仓库文件扫描未发现密钥格式。
 
 ## 已知限制
 

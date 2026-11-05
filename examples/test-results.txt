@@ -1,5 +1,7 @@
 Command: uv run python -m unittest discover -s tests -v
 
+test_changed_occupied_slot_replans_and_remains_idempotent ... ok
+test_confirmation_type_enum_rejects_drift ... ok
 test_confirmed_alternative_rechecks_and_saves ... ok
 test_duplicate_submission_creates_one_draft ... ok
 test_execution_limit ... ok
@@ -9,8 +11,9 @@ test_normal_schedule ... ok
 test_query_reference_slot ... ok
 test_rule_risk_blocks ... ok
 test_save_failure_is_explicit ... ok
+test_slot_conflict_cannot_use_information_request ... ok
 test_slot_conflict_requests_confirmation_without_save ... ok
 test_trace_has_required_audit_fields ... ok
 
-Ran 11 tests in 0.183s
+Ran 14 tests in 0.235s
 OK

@@ -12,7 +12,7 @@ def load_json(path: Path) -> Any:
 
 
 class DataRepository:
-    def __init__(self, data_dir: Path):
+    def __init__(self, data_dir: Path, schedule_overrides: list[dict[str, Any]] | None = None):
         assets_doc = load_json(data_dir / "assets.json")
         windows_doc = load_json(data_dir / "publish_windows.json")
         schedule_doc = load_json(data_dir / "existing_schedule.json")
@@ -21,6 +21,14 @@ class DataRepository:
             (item["platform"], item["account_id"]): item for item in windows_doc["accounts"]
         }
         self.schedule = schedule_doc["schedule_items"]
+        if schedule_overrides:
+            schedule_by_id = {item["schedule_id"]: item for item in self.schedule}
+            for override in schedule_overrides:
+                schedule_id = override.get("schedule_id")
+                if schedule_id not in schedule_by_id:
+                    raise ValueError(f"未知排期覆盖项：{schedule_id}")
+                allowed = {key: value for key, value in override.items() if key in {"start", "end", "status"}}
+                schedule_by_id[schedule_id].update(allowed)
         self.rules = load_json(data_dir / "review_rules.json")
         self.context = load_json(data_dir / "evaluation_context.json")
 

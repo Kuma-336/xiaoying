@@ -52,7 +52,7 @@ def execute_scenario(
     results: list[dict[str, Any]] = []
     traces: list[dict[str, Any]] = []
     for invocation in range(1, repeat_count + 1):
-        repository = DataRepository(ROOT / "data")
+        repository = DataRepository(ROOT / "data", controls.get("schedule_overrides"))
         tools = BusinessTools(repository, DraftStore(state_dir), controls.get("tool_failures"))
         runtime = AgentRuntime(
             tools,

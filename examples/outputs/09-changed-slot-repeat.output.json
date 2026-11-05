@@ -1,0 +1,75 @@
+{
+  "scenario_id": "changed_slot_repeat",
+  "planner_mode": "deepseek",
+  "overall_status": "completed",
+  "invocations": [
+    {
+      "run_id": "e7d097c3-f8d9-4a69-a376-78e5782680c8",
+      "scenario_id": "changed_slot_repeat",
+      "request_id": "REQ-M01-CHANGED-SLOT",
+      "planner_mode": "deepseek",
+      "model": "deepseek-flash",
+      "overall_status": "completed",
+      "completion_reason": null,
+      "asset_id": "M01",
+      "review_status": "approved",
+      "risk_reasons": [],
+      "risk_codes": [],
+      "missing_fields": [],
+      "requested_start": "2026-11-05T18:00:00+08:00",
+      "suggested_start": "2026-11-05T18:00:00+08:00",
+      "hard_requirement_changed": false,
+      "hard_requirement_change_authorized": false,
+      "schedule_status": "suggested",
+      "pending_confirmations": [],
+      "pending_confirmation_count": 0,
+      "draft": {
+        "save_status": "saved",
+        "workflow_status": "draft_saved",
+        "draft_id": "DR-F5D5E3478D8B",
+        "created_new_draft": true
+      },
+      "published": false,
+      "usage": {
+        "model_steps": 5,
+        "tool_calls": 4
+      },
+      "invocation": 1
+    },
+    {
+      "run_id": "687ddf1c-74a2-4a46-a596-aa5ecb4aa283",
+      "scenario_id": "changed_slot_repeat",
+      "request_id": "REQ-M01-CHANGED-SLOT",
+      "planner_mode": "deepseek",
+      "model": "deepseek-flash",
+      "overall_status": "completed",
+      "completion_reason": null,
+      "asset_id": "M01",
+      "review_status": "approved",
+      "risk_reasons": [],
+      "risk_codes": [],
+      "missing_fields": [],
+      "requested_start": "2026-11-05T18:00:00+08:00",
+      "suggested_start": "2026-11-05T18:00:00+08:00",
+      "hard_requirement_changed": false,
+      "hard_requirement_change_authorized": false,
+      "schedule_status": "suggested",
+      "pending_confirmations": [],
+      "pending_confirmation_count": 0,
+      "draft": {
+        "save_status": "existing",
+        "workflow_status": "draft_saved",
+        "draft_id": "DR-F5D5E3478D8B",
+        "created_new_draft": false
+      },
+      "published": false,
+      "usage": {
+        "model_steps": 5,
+        "tool_calls": 4
+      },
+      "invocation": 2
+    }
+  ],
+  "persistent_draft_count": 1,
+  "published": false
+}

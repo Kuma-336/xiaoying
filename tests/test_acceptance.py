@@ -119,6 +119,22 @@ class AcceptanceTests(unittest.TestCase):
         self.assertEqual("2026-11-05T19:00:00+08:00", occupied["alternatives"][0])
         self.assertTrue(available["available"])
 
+    def test_changed_occupied_slot_replans_and_remains_idempotent(self) -> None:
+        output, trace = self.run_example("09-changed-slot-repeat.json")
+        self.assertEqual("completed", output["overall_status"])
+        self.assertEqual(2, len(output["invocations"]))
+        first, second = output["invocations"]
+        self.assertEqual("2026-11-05T18:00:00+08:00", first["suggested_start"])
+        self.assertEqual("saved", first["draft"]["save_status"])
+        self.assertEqual("existing", second["draft"]["save_status"])
+        self.assertEqual(first["draft"]["draft_id"], second["draft"]["draft_id"])
+        self.assertEqual(1, output["persistent_draft_count"])
+        for invocation in trace["invocations"]:
+            actions = [step["selected_action"] for step in invocation["steps"]]
+            self.assertIn("query_slots", actions)
+            self.assertIn("save_draft", actions)
+            self.assertNotIn("request_confirmation", actions)
+
     def test_executor_blocks_save_before_checks(self) -> None:
         document = load_json(ROOT / "examples" / "inputs" / "01-normal-schedule.json")
         request = document["request"]
@@ -142,6 +158,71 @@ class AcceptanceTests(unittest.TestCase):
         output, _ = AgentRuntime(tools, planner, 10, 8).run("unsafe", request)
         self.assertEqual("failed", output["draft"]["save_status"])
         self.assertEqual("unsafe_sequence", output["draft"]["error_code"])
+
+    def test_confirmation_type_enum_rejects_drift(self) -> None:
+        document = load_json(ROOT / "examples" / "inputs" / "04-slot-conflict.json")
+        request = document["request"]
+        planner = SequencePlanner(
+            [
+                action("read_asset", asset_id="M01", asset_version=3),
+                action(
+                    "check_rules",
+                    asset_id="M01",
+                    asset_version=3,
+                    proposed_start="2026-11-05T18:00:00+08:00",
+                ),
+                action(
+                    "query_slots",
+                    request_id=request["request_id"],
+                    asset_id="M01",
+                    candidate_start="2026-11-05T18:00:00+08:00",
+                    latest_start=None,
+                ),
+                action(
+                    "request_confirmation",
+                    request_id=request["request_id"],
+                    confirmation_type="alternative_slot",
+                    requested_start="2026-11-05T18:00:00+08:00",
+                    suggested_start="2026-11-05T19:00:00+08:00",
+                    message="错误枚举测试",
+                ),
+                action("finish", completion_status="failed"),
+            ]
+        )
+        tools = BusinessTools(DataRepository(ROOT / "data"), DraftStore(self.state_root / "enum"))
+        output, trace = AgentRuntime(tools, planner, 10, 8).run("enum", request)
+        self.assertEqual("failed", output["overall_status"])
+        self.assertEqual(0, output["pending_confirmation_count"])
+        self.assertIn("枚举值不合法", trace[3]["tool_result_summary"])
+
+    def test_slot_conflict_cannot_use_information_request(self) -> None:
+        document = load_json(ROOT / "examples" / "inputs" / "04-slot-conflict.json")
+        request = document["request"]
+        planner = SequencePlanner(
+            [
+                action("read_asset", asset_id="M01", asset_version=3),
+                action(
+                    "check_rules",
+                    asset_id="M01",
+                    asset_version=3,
+                    proposed_start="2026-11-05T18:00:00+08:00",
+                ),
+                action(
+                    "query_slots",
+                    request_id=request["request_id"],
+                    asset_id="M01",
+                    candidate_start="2026-11-05T18:00:00+08:00",
+                    latest_start=None,
+                ),
+                action("request_information", missing_fields=[], message="错误工具测试"),
+                action("finish", completion_status="failed"),
+            ]
+        )
+        tools = BusinessTools(DataRepository(ROOT / "data"), DraftStore(self.state_root / "wrong-tool"))
+        output, trace = AgentRuntime(tools, planner, 10, 8).run("wrong-tool", request)
+        self.assertEqual("failed", output["overall_status"])
+        self.assertEqual(0, output["pending_confirmation_count"])
+        self.assertIn("只有素材确实缺少字段", trace[3]["tool_result_summary"])
 
     def test_trace_has_required_audit_fields(self) -> None:
         _, trace = self.run_example("04-slot-conflict.json")

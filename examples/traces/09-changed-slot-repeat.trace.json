@@ -1,0 +1,162 @@
+{
+  "scenario_id": "changed_slot_repeat",
+  "planner_mode": "deepseek",
+  "invocations": [
+    {
+      "invocation": 1,
+      "steps": [
+        {
+          "step": 1,
+          "model": "deepseek-flash",
+          "selected_action": "read_asset",
+          "tool_parameters": {
+            "asset_id": "M01",
+            "asset_version": 3
+          },
+          "tool_result_summary": "素材已读取；缺失字段：无",
+          "next_action": "check_rules",
+          "decision_basis": "需要核对 M01 v3 的素材元数据与缺失字段，才能判断排期前置条件。",
+          "timestamp": "2026-11-05T02:04:08.526337+00:00"
+        },
+        {
+          "step": 2,
+          "model": "deepseek-flash",
+          "selected_action": "check_rules",
+          "tool_parameters": {
+            "asset_id": "M01",
+            "asset_version": 3,
+            "proposed_start": "2026-11-05T18:00:00+08:00"
+          },
+          "tool_result_summary": "规则检查完成；通过=True；风险=[]",
+          "next_action": "query_slots",
+          "decision_basis": "元数据完整，需按用户硬性要求的 2026-11-05 18:00 检查平台限制与授权风险。",
+          "timestamp": "2026-11-05T02:04:09.676351+00:00"
+        },
+        {
+          "step": 3,
+          "model": "deepseek-flash",
+          "selected_action": "query_slots",
+          "tool_parameters": {
+            "request_id": "REQ-M01-CHANGED-SLOT",
+            "asset_id": "M01",
+            "candidate_start": "2026-11-05T18:00:00+08:00",
+            "latest_start": "2026-11-05T18:00:00+08:00"
+          },
+          "tool_result_summary": "候选时段可用",
+          "next_action": "save_draft",
+          "decision_basis": "合规检查已通过，需确认硬性要求时段 2026-11-05 18:00 的可用性。",
+          "timestamp": "2026-11-05T02:04:11.253125+00:00"
+        },
+        {
+          "step": 4,
+          "model": "deepseek-flash",
+          "selected_action": "save_draft",
+          "tool_parameters": {
+            "request_id": "REQ-M01-CHANGED-SLOT",
+            "asset_id": "M01",
+            "asset_version": 3,
+            "requested_start": "2026-11-05T18:00:00+08:00",
+            "scheduled_start": "2026-11-05T18:00:00+08:00",
+            "confirmation_status": "not_required",
+            "review_status": "passed",
+            "risk_codes": []
+          },
+          "tool_result_summary": "草稿保存状态：saved；draft_id=DR-F5D5E3478D8B",
+          "next_action": "finish",
+          "decision_basis": "元数据无缺失、合规检查通过、硬性时段 2026-11-05 18:00 可用且无冲突，符合保存草稿前置条件。",
+          "timestamp": "2026-11-05T02:04:13.122175+00:00"
+        },
+        {
+          "step": 5,
+          "model": "deepseek-flash",
+          "selected_action": "finish",
+          "tool_parameters": {
+            "completion_status": "completed"
+          },
+          "tool_result_summary": "工具执行成功",
+          "next_action": null,
+          "decision_basis": "M01 v3 元数据完整、合规检查通过、硬性时段可用，已按原要求时间保存草稿 DR-F5D5E3478D8B。",
+          "timestamp": "2026-11-05T02:04:14.487016+00:00"
+        }
+      ]
+    },
+    {
+      "invocation": 2,
+      "steps": [
+        {
+          "step": 1,
+          "model": "deepseek-flash",
+          "selected_action": "read_asset",
+          "tool_parameters": {
+            "asset_id": "M01",
+            "asset_version": 3
+          },
+          "tool_result_summary": "素材已读取；缺失字段：无",
+          "next_action": "check_rules",
+          "decision_basis": "需先获取 M01 v3 的元数据与缺失字段，才能判断后续审核与排期动作。",
+          "timestamp": "2026-11-05T02:04:15.810086+00:00"
+        },
+        {
+          "step": 2,
+          "model": "deepseek-flash",
+          "selected_action": "check_rules",
+          "tool_parameters": {
+            "asset_id": "M01",
+            "asset_version": 3,
+            "proposed_start": "2026-11-05T18:00:00+08:00"
+          },
+          "tool_result_summary": "规则检查完成；通过=True；风险=[]",
+          "next_action": "query_slots",
+          "decision_basis": "元数据无缺失字段，需校验平台规则、授权与硬性 requested_start 时段的合规风险。",
+          "timestamp": "2026-11-05T02:04:16.849964+00:00"
+        },
+        {
+          "step": 3,
+          "model": "deepseek-flash",
+          "selected_action": "query_slots",
+          "tool_parameters": {
+            "request_id": "REQ-M01-CHANGED-SLOT",
+            "asset_id": "M01",
+            "candidate_start": "2026-11-05T18:00:00+08:00",
+            "latest_start": "2026-11-05T18:00:00+08:00"
+          },
+          "tool_result_summary": "候选时段可用",
+          "next_action": "save_draft",
+          "decision_basis": "规则检查已通过，需确认硬性 requested_start 2026-11-05T18:00 的时段是否可用。",
+          "timestamp": "2026-11-05T02:04:18.060376+00:00"
+        },
+        {
+          "step": 4,
+          "model": "deepseek-flash",
+          "selected_action": "save_draft",
+          "tool_parameters": {
+            "request_id": "REQ-M01-CHANGED-SLOT",
+            "asset_id": "M01",
+            "asset_version": 3,
+            "requested_start": "2026-11-05T18:00:00+08:00",
+            "scheduled_start": "2026-11-05T18:00:00+08:00",
+            "confirmation_status": "not_required",
+            "review_status": "passed",
+            "risk_codes": []
+          },
+          "tool_result_summary": "草稿保存状态：existing；draft_id=DR-F5D5E3478D8B",
+          "next_action": "finish",
+          "decision_basis": "元数据无缺失、规则检查通过且 hard 请求时段可用，可按原请求时段保存草稿。",
+          "timestamp": "2026-11-05T02:04:19.383850+00:00"
+        },
+        {
+          "step": 5,
+          "model": "deepseek-flash",
+          "selected_action": "finish",
+          "tool_parameters": {
+            "completion_status": "completed"
+          },
+          "tool_result_summary": "工具执行成功",
+          "next_action": null,
+          "decision_basis": "M01 v3 元数据无缺失、规则检查通过、2026-11-05T18:00 时段可用，草稿 DR-F5D5E3478D8B 已幂等保存（未发布）。",
+          "timestamp": "2026-11-05T02:04:20.771531+00:00"
+        }
+      ]
+    }
+  ]
+}

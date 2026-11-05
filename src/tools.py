@@ -83,7 +83,7 @@ class BusinessTools:
             ),
             spec(
                 "request_information",
-                "登记素材信息补充请求。",
+                "仅当 read_asset 返回非空 missing_fields 时登记素材信息补充请求；不得用于时段冲突。",
                 {
                     "missing_fields": {"type": "array", "items": {"type": "string"}},
                     "message": {"type": "string"},
@@ -92,10 +92,10 @@ class BusinessTools:
             ),
             spec(
                 "request_confirmation",
-                "登记替代时间或合规事项的用户确认请求，不保存排期草稿。",
+                "仅用于时段冲突：登记 alternative_time 用户确认请求，不保存排期草稿。",
                 {
                     "request_id": {"type": "string"},
-                    "confirmation_type": {"type": "string"},
+                    "confirmation_type": {"type": "string", "enum": ["alternative_time"]},
                     "requested_start": {"type": "string"},
                     "suggested_start": {"type": "string"},
                     "message": {"type": "string"},
