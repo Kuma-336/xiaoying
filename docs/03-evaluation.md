@@ -8,21 +8,21 @@
 uv run python -m unittest discover -s tests -v
 ```
 
-实际结果：14 项测试全部通过，覆盖九个业务场景、时段变更、确认类型枚举、安全守卫和 Trace 字段。测试摘要保存于 `examples/test-results.txt`。
+实际结果：14 项测试全部通过，覆盖九个业务场景、时段变更、确认类型枚举、安全守卫和 Trace 字段。测试摘要见 [`examples/test-results.txt`](../examples/test-results.txt)。
 
 ## 场景结果
 
 | 场景 | 实际 DeepSeek 结果 | 输出与 Trace |
 |---|---|---|
-| 正常排期 | `completed / saved` | `01-normal-schedule.*.json` |
-| 信息缺失 | `incomplete / not_attempted` | `02-missing-information.*.json` |
-| 规则风险 | `blocked / not_attempted` | `03-rule-risk.*.json` |
-| 时段冲突 | 保留 18:00、建议 19:00、未保存 | `04-slot-conflict.*.json` |
-| 重复提交 | 第一次 `saved`，第二次 `existing`，草稿总数 1 | `05-duplicate-submission.*.json` |
-| 保存失败 | `failed / storage_unavailable` | `06-save-failure.*.json` |
-| 执行上限 | `incomplete / execution_limit_reached` | `07-execution-limit.*.json` |
-| 确认闭环 | 重新查询 19:00 后 `completed / saved` | `08-confirmed-alternative.*.json` |
-| 更换占用并重复提交 | SCH-001 移到 19:00；18:00 恢复可用；`saved → existing`，草稿总数 1 | `09-changed-slot-repeat.*.json` |
+| 正常排期 | `completed / saved` | [输出](../examples/outputs/01-normal-schedule.output.json) · [Trace](../examples/traces/01-normal-schedule.trace.json) |
+| 信息缺失 | `incomplete / not_attempted` | [输出](../examples/outputs/02-missing-information.output.json) · [Trace](../examples/traces/02-missing-information.trace.json) |
+| 规则风险 | `blocked / not_attempted` | [输出](../examples/outputs/03-rule-risk.output.json) · [Trace](../examples/traces/03-rule-risk.trace.json) |
+| 时段冲突 | 保留 18:00、建议 19:00、未保存 | [输出](../examples/outputs/04-slot-conflict.output.json) · [Trace](../examples/traces/04-slot-conflict.trace.json) |
+| 重复提交 | 第一次 `saved`，第二次 `existing`，草稿总数 1 | [输出](../examples/outputs/05-duplicate-submission.output.json) · [Trace](../examples/traces/05-duplicate-submission.trace.json) |
+| 保存失败 | `failed / storage_unavailable` | [输出](../examples/outputs/06-save-failure.output.json) · [Trace](../examples/traces/06-save-failure.trace.json) |
+| 执行上限 | `incomplete / execution_limit_reached` | [输出](../examples/outputs/07-execution-limit.output.json) · [Trace](../examples/traces/07-execution-limit.trace.json) |
+| 确认闭环 | 重新查询 19:00 后 `completed / saved` | [输出](../examples/outputs/08-confirmed-alternative.output.json) · [Trace](../examples/traces/08-confirmed-alternative.trace.json) |
+| 更换占用并重复提交 | SCH-001 移到 19:00；18:00 恢复可用；`saved → existing`，草稿总数 1 | [输出](../examples/outputs/09-changed-slot-repeat.output.json) · [Trace](../examples/traces/09-changed-slot-repeat.trace.json) |
 
 输出位于 `examples/outputs/`，逐步记录位于 `examples/traces/`。当前文件均于 2026-11-05 由 CLI 调用 `deepseek-flash` 实际生成，并明确标记 `planner_mode=deepseek`。
 

@@ -15,5 +15,5 @@ test_slot_conflict_cannot_use_information_request ... ok
 test_slot_conflict_requests_confirmation_without_save ... ok
 test_trace_has_required_audit_fields ... ok
 
-Ran 14 tests in 0.235s
+Ran 14 tests in 0.193s
 OK

@@ -16,7 +16,9 @@
 - uv 0.13.6
 - Python 3.12（uv 会按 `.python-version` 创建环境）
 
-Windows 安装 uv：
+## 安装
+
+Windows 安装 uv 并同步锁定环境：
 
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/0.13.6/install.ps1 | iex"
