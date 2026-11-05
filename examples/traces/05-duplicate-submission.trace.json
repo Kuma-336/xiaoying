@@ -1,13 +1,13 @@
 {
   "scenario_id": "duplicate_submission",
-  "planner_mode": "mock",
+  "planner_mode": "deepseek",
   "invocations": [
     {
       "invocation": 1,
       "steps": [
         {
           "step": 1,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "read_asset",
           "tool_parameters": {
             "asset_id": "M05",
@@ -15,12 +15,12 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：无",
           "next_action": "check_rules",
-          "decision_basis": "先读取素材并确认信息完整性。",
-          "timestamp": "2026-11-04T14:41:49.596607+00:00"
+          "decision_basis": "需要先确认 M05 v4 的素材元数据与缺失字段，才能判断是否可排期。",
+          "timestamp": "2026-11-05T01:19:28.337350+00:00"
         },
         {
           "step": 2,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "check_rules",
           "tool_parameters": {
             "asset_id": "M05",
@@ -29,12 +29,12 @@
           },
           "tool_result_summary": "规则检查完成；通过=True；风险=[]",
           "next_action": "query_slots",
-          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
-          "timestamp": "2026-11-04T14:41:49.596607+00:00"
+          "decision_basis": "元数据齐全，需核验该素材在用户指定时间发布的内容与授权风险。",
+          "timestamp": "2026-11-05T01:19:29.640285+00:00"
         },
         {
           "step": 3,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "query_slots",
           "tool_parameters": {
             "request_id": "REQ-M05-DUPLICATE",
@@ -44,12 +44,12 @@
           },
           "tool_result_summary": "候选时段可用",
           "next_action": "save_draft",
-          "decision_basis": "规则通过，查询用户要求或已确认的候选时段。",
-          "timestamp": "2026-11-04T14:41:49.596607+00:00"
+          "decision_basis": "规则检查已通过，需确认用户指定的 2026-11-08 11:00 时段是否与其他排期冲突。",
+          "timestamp": "2026-11-05T01:19:31.446658+00:00"
         },
         {
           "step": 4,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "save_draft",
           "tool_parameters": {
             "request_id": "REQ-M05-DUPLICATE",
@@ -58,25 +58,25 @@
             "requested_start": "2026-11-08T11:00:00+08:00",
             "scheduled_start": "2026-11-08T11:00:00+08:00",
             "confirmation_status": "not_required",
-            "review_status": "approved",
+            "review_status": "passed",
             "risk_codes": []
           },
           "tool_result_summary": "草稿保存状态：saved；draft_id=DR-93E05DF21A29",
           "next_action": "finish",
-          "decision_basis": "审核和时段前置条件已满足，幂等保存草稿。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "元数据齐全、规则检查通过且指定时段可用无冲突，按用户硬性时间原样保存草稿。",
+          "timestamp": "2026-11-05T01:19:33.301318+00:00"
         },
         {
           "step": 5,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "finish",
           "tool_parameters": {
             "completion_status": "completed"
           },
           "tool_result_summary": "工具执行成功",
           "next_action": null,
-          "decision_basis": "草稿已保存或命中已有记录，结束处理。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "草稿 DR-93E05DF21A29 已按用户硬性时间保存，规则检查与时段查询均通过。",
+          "timestamp": "2026-11-05T01:19:34.609937+00:00"
         }
       ]
     },
@@ -85,7 +85,7 @@
       "steps": [
         {
           "step": 1,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "read_asset",
           "tool_parameters": {
             "asset_id": "M05",
@@ -93,12 +93,12 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：无",
           "next_action": "check_rules",
-          "decision_basis": "先读取素材并确认信息完整性。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "需先核对 M05 v4 的元数据与缺失字段，才能判断是否可进入排期。",
+          "timestamp": "2026-11-05T01:19:36.043425+00:00"
         },
         {
           "step": 2,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "check_rules",
           "tool_parameters": {
             "asset_id": "M05",
@@ -107,12 +107,12 @@
           },
           "tool_result_summary": "规则检查完成；通过=True；风险=[]",
           "next_action": "query_slots",
-          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "元数据无缺失字段且授权有效，需再核查该素材在拟发布时段的平台与合规风险。",
+          "timestamp": "2026-11-05T01:19:37.268414+00:00"
         },
         {
           "step": 3,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "query_slots",
           "tool_parameters": {
             "request_id": "REQ-M05-DUPLICATE",
@@ -122,39 +122,39 @@
           },
           "tool_result_summary": "候选时段可用",
           "next_action": "save_draft",
-          "decision_basis": "规则通过，查询用户要求或已确认的候选时段。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "规则检查已通过，需确认 2026-11-08T11:00:00+08:00 这一硬性时段是否可用。",
+          "timestamp": "2026-11-05T01:19:38.680110+00:00"
         },
         {
           "step": 4,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "save_draft",
           "tool_parameters": {
-            "request_id": "REQ-M05-DUPLICATE",
             "asset_id": "M05",
             "asset_version": 4,
+            "request_id": "REQ-M05-DUPLICATE",
             "requested_start": "2026-11-08T11:00:00+08:00",
             "scheduled_start": "2026-11-08T11:00:00+08:00",
             "confirmation_status": "not_required",
-            "review_status": "approved",
+            "review_status": "passed",
             "risk_codes": []
           },
           "tool_result_summary": "草稿保存状态：existing；draft_id=DR-93E05DF21A29",
           "next_action": "finish",
-          "decision_basis": "审核和时段前置条件已满足，幂等保存草稿。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "元数据完整、规则检查通过且硬性时段可用无冲突，草稿按用户原定时间保存。",
+          "timestamp": "2026-11-05T01:19:41.185919+00:00"
         },
         {
           "step": 5,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "finish",
           "tool_parameters": {
             "completion_status": "completed"
           },
           "tool_result_summary": "工具执行成功",
           "next_action": null,
-          "decision_basis": "草稿已保存或命中已有记录，结束处理。",
-          "timestamp": "2026-11-04T14:41:49.606056+00:00"
+          "decision_basis": "M05 v4 元数据完整、规则检查通过、硬性时段可用且无冲突，已幂等命中既有草稿 DR-93E05DF21A29。",
+          "timestamp": "2026-11-05T01:19:42.506737+00:00"
         }
       ]
     }

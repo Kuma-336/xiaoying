@@ -60,6 +60,8 @@ uv run python -m src.cli run-suite --planner deepseek
 
 ## 验收场景
 
+`examples/outputs/` 与 `examples/traces/` 已于 2026-11-05 使用 `deepseek-flash` 实际生成，文件内标记 `planner_mode=deepseek`。
+
 | 场景 | 关键结果 |
 |---|---|
 | 正常排期 | 审核通过、时段可用、保存草稿 |

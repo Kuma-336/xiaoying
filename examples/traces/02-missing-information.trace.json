@@ -1,13 +1,13 @@
 {
   "scenario_id": "missing_information",
-  "planner_mode": "mock",
+  "planner_mode": "deepseek",
   "invocations": [
     {
       "invocation": 1,
       "steps": [
         {
           "step": 1,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "read_asset",
           "tool_parameters": {
             "asset_id": "M02",
@@ -15,35 +15,35 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：duration_seconds",
           "next_action": "request_information",
-          "decision_basis": "先读取素材并确认信息完整性。",
-          "timestamp": "2026-11-04T14:41:49.563733+00:00"
+          "decision_basis": "需先确认 M02 v1 的元数据完整性与缺失字段，才能判断是否可进入排期审核。",
+          "timestamp": "2026-11-05T01:19:13.116571+00:00"
         },
         {
           "step": 2,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "request_information",
           "tool_parameters": {
             "missing_fields": [
               "duration_seconds"
             ],
-            "message": "请补充素材字段：duration_seconds"
+            "message": "M02 v1（抖音短视频《社区用户故事》）缺少 duration_seconds（时长）字段，请补充该素材的实际时长，以便校验平台时长限制并完成排期审核。"
           },
           "tool_result_summary": "已登记待确认项：missing_information",
           "next_action": "finish",
-          "decision_basis": "素材信息不足，无法安全审核和排期。",
-          "timestamp": "2026-11-04T14:41:49.563733+00:00"
+          "decision_basis": "read_asset 显示 M02 v1 返回的 missing_fields 仅为 duration_seconds，缺少时长无法完成平台限制校验。",
+          "timestamp": "2026-11-05T01:19:14.632928+00:00"
         },
         {
           "step": 3,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "finish",
           "tool_parameters": {
             "completion_status": "incomplete"
           },
           "tool_result_summary": "工具执行成功",
           "next_action": null,
-          "decision_basis": "已登记资料补充请求，等待用户提供信息。",
-          "timestamp": "2026-11-04T14:41:49.563733+00:00"
+          "decision_basis": "M02 v1 缺少 duration_seconds，已登记信息补充请求，等待素材方补齐后再进行规则校验与时段查询。",
+          "timestamp": "2026-11-05T01:19:15.863506+00:00"
         }
       ]
     }

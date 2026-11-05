@@ -1,9 +1,9 @@
 {
-  "run_id": "52e44483-42a3-4057-b31b-9ea526bdb9f2",
+  "run_id": "c90ad3c4-3147-4e29-8672-77d4243e3611",
   "scenario_id": "rule_risk",
   "request_id": "REQ-M03-RISK",
-  "planner_mode": "mock",
-  "model": "deterministic-mock",
+  "planner_mode": "deepseek",
+  "model": "deepseek-flash",
   "overall_status": "blocked",
   "completion_reason": null,
   "asset_id": "M03",

@@ -1,13 +1,13 @@
 {
   "scenario_id": "execution_limit",
-  "planner_mode": "mock",
+  "planner_mode": "deepseek",
   "invocations": [
     {
       "invocation": 1,
       "steps": [
         {
           "step": 1,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "read_asset",
           "tool_parameters": {
             "asset_id": "M05",
@@ -15,12 +15,12 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：无",
           "next_action": "check_rules",
-          "decision_basis": "先读取素材并确认信息完整性。",
-          "timestamp": "2026-11-04T14:41:49.638368+00:00"
+          "decision_basis": "需先确认 M05 v4 的素材元数据与缺失字段，再评估排期可行性。",
+          "timestamp": "2026-11-05T01:19:52.328505+00:00"
         },
         {
           "step": 2,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "check_rules",
           "tool_parameters": {
             "asset_id": "M05",
@@ -29,18 +29,18 @@
           },
           "tool_result_summary": "规则检查完成；通过=True；风险=[]",
           "next_action": "execution_limit",
-          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
-          "timestamp": "2026-11-04T14:41:49.638368+00:00"
+          "decision_basis": "元数据无缺失字段，需校验该素材在请求的硬性时段下的内容与授权风险。",
+          "timestamp": "2026-11-05T01:19:53.474803+00:00"
         },
         {
           "step": 3,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "execution_limit",
           "tool_parameters": {},
           "tool_result_summary": "达到模型步骤或工具调用上限",
           "next_action": null,
           "decision_basis": "停止循环以避免失控执行。",
-          "timestamp": "2026-11-04T14:41:49.638368+00:00"
+          "timestamp": "2026-11-05T01:19:53.474803+00:00"
         }
       ]
     }

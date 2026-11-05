@@ -1,9 +1,9 @@
 {
-  "run_id": "35d723f3-df54-40e7-a91b-9e127e374a81",
+  "run_id": "b86f9b87-956f-4d1d-9735-c9364b9b41d9",
   "scenario_id": "confirmed_alternative",
   "request_id": "REQ-M01-1800",
-  "planner_mode": "mock",
-  "model": "deterministic-mock",
+  "planner_mode": "deepseek",
+  "model": "deepseek-flash",
   "overall_status": "completed",
   "completion_reason": null,
   "asset_id": "M01",

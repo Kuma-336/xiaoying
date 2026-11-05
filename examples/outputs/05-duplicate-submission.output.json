@@ -1,14 +1,14 @@
 {
   "scenario_id": "duplicate_submission",
-  "planner_mode": "mock",
+  "planner_mode": "deepseek",
   "overall_status": "completed",
   "invocations": [
     {
-      "run_id": "7d45acbd-0f50-4444-85c1-4eef55f06130",
+      "run_id": "e86d8af2-3780-4ff2-b05d-e28424e9e2b4",
       "scenario_id": "duplicate_submission",
       "request_id": "REQ-M05-DUPLICATE",
-      "planner_mode": "mock",
-      "model": "deterministic-mock",
+      "planner_mode": "deepseek",
+      "model": "deepseek-flash",
       "overall_status": "completed",
       "completion_reason": null,
       "asset_id": "M05",
@@ -37,11 +37,11 @@
       "invocation": 1
     },
     {
-      "run_id": "8d1f8430-aa74-4415-8e37-3c70777cbd65",
+      "run_id": "af52e506-6d7b-45ad-9ace-4dd42a267764",
       "scenario_id": "duplicate_submission",
       "request_id": "REQ-M05-DUPLICATE",
-      "planner_mode": "mock",
-      "model": "deterministic-mock",
+      "planner_mode": "deepseek",
+      "model": "deepseek-flash",
       "overall_status": "completed",
       "completion_reason": null,
       "asset_id": "M05",

@@ -1,9 +1,9 @@
 {
-  "run_id": "a57103b8-9b49-44e9-96ab-3e776b4a5d7a",
+  "run_id": "658ab08e-038b-49b2-a9b7-4481c70590b6",
   "scenario_id": "save_failure",
   "request_id": "REQ-M05-SAVE-FAIL",
-  "planner_mode": "mock",
-  "model": "deterministic-mock",
+  "planner_mode": "deepseek",
+  "model": "deepseek-flash",
   "overall_status": "failed",
   "completion_reason": null,
   "asset_id": "M05",
@@ -28,8 +28,8 @@
   },
   "published": false,
   "usage": {
-    "model_steps": 5,
-    "tool_calls": 4
+    "model_steps": 6,
+    "tool_calls": 5
   },
   "invocation": 1
 }

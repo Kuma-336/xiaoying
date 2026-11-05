@@ -1,9 +1,9 @@
 {
-  "run_id": "27083068-8ba8-437a-9fbe-c73ac1c07efb",
+  "run_id": "a4d234eb-1d45-4dc1-b114-a07acd156c5b",
   "scenario_id": "execution_limit",
   "request_id": "REQ-M05-LIMIT",
-  "planner_mode": "mock",
-  "model": "deterministic-mock",
+  "planner_mode": "deepseek",
+  "model": "deepseek-flash",
   "overall_status": "incomplete",
   "completion_reason": "execution_limit_reached",
   "asset_id": "M05",

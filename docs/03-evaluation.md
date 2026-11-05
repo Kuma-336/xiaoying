@@ -12,7 +12,7 @@ uv run python -m unittest discover -s tests -v
 
 ## 场景结果
 
-| 场景 | 实际 Mock 结果 | 输出与 Trace |
+| 场景 | 实际 DeepSeek 结果 | 输出与 Trace |
 |---|---|---|
 | 正常排期 | `completed / saved` | `01-normal-schedule.*.json` |
 | 信息缺失 | `incomplete / not_attempted` | `02-missing-information.*.json` |
@@ -23,23 +23,23 @@ uv run python -m unittest discover -s tests -v
 | 执行上限 | `incomplete / execution_limit_reached` | `07-execution-limit.*.json` |
 | 确认闭环 | 重新查询 19:00 后 `completed / saved` | `08-confirmed-alternative.*.json` |
 
-输出位于 `examples/outputs/`，逐步记录位于 `examples/traces/`。当前文件均由 CLI 实际运行生成，且明确标记 `planner_mode=mock`。
+输出位于 `examples/outputs/`，逐步记录位于 `examples/traces/`。当前文件均于 2026-11-05 由 CLI 调用 `deepseek-flash` 实际生成，并明确标记 `planner_mode=deepseek`。
 
 ## 动态路径证据
 
-正常路径在规则通过和时段可用后选择 `save_draft`；缺信息路径在读取结果中发现 `duration_seconds` 缺失后选择 `request_information`；风险路径在规则工具返回阻断风险后直接结束；冲突路径观察到 18:00 占用后选择 `request_confirmation`，并且不调用保存工具。
+正常路径在规则通过和时段可用后选择 `save_draft`；缺信息路径在读取结果中发现 `duration_seconds` 缺失后选择 `request_information`；风险路径在规则工具返回阻断风险后直接结束；冲突路径观察到 18:00 占用后选择 `request_confirmation`，并且不调用保存工具。保存失败路径中，模型观察失败后尝试再次保存，第二次仍失败后选择 `finish` 并返回失败。
 
-这些 Mock Trace 证明 Runtime 会把工具结果传回 Planner 并支持不同路径，但不证明真实模型判断质量。
+这些在线 Trace 证明模型会根据不同工具观察调整后续动作。离线 Mock 测试仍只用于稳定验证流程和安全边界。
 
-## 在线验证状态
+## 在线验证
 
-DeepSeek Planner 已实现，但未使用用户在聊天中暴露的密钥。该密钥必须撤销并轮换。设置新的 `DEEPSEEK_API_KEY` 后执行：
+使用轮换后的本地 `.env` 配置执行：
 
 ```powershell
 uv run python -m src.cli run-suite --planner deepseek
 ```
 
-该命令会以真实在线输出覆盖当前同名 Mock 输出和 Trace。最终提交前应确认所有文件的 `planner_mode=deepseek`。
+八个场景全部完成，业务不变量错误为 0，Trace 字段错误为 0，所有输出均为 `published=false`。密钥只存在于被 Git 忽略的 `.env`，仓库文件扫描未发现密钥格式。
 
 ## 已知限制
 
@@ -47,4 +47,3 @@ uv run python -m src.cli run-suite --planner deepseek
 - 规则和发布窗口是合成材料。
 - 非思考模式仍可能产生非法工具参数；当前允许一次协议纠正。
 - 在线模型结果具有波动性，自动化单元测试不依赖网络。
-- 当前尚缺轮换密钥后的 DeepSeek 实际 Trace，因此真实模型效果仍未验证。

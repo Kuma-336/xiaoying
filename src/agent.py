@@ -83,6 +83,14 @@ class AgentRuntime:
         extra = [field for field in action.arguments if field not in schema["properties"]]
         if missing or extra:
             return self._error("invalid_action_arguments", f"缺少={missing}，多余={extra}")
+        if action.name == "finish" and action.arguments["completion_status"] not in {
+            "completed",
+            "incomplete",
+            "blocked",
+            "pending_confirmation",
+            "failed",
+        }:
+            return self._error("invalid_completion_status", "finish 使用了不允许的完成状态")
         request = state.request
         if action.arguments.get("asset_id", request["asset_id"]) != request["asset_id"]:
             return self._error("asset_mismatch", "动作素材与当前请求不一致")

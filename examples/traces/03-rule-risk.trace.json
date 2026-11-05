@@ -1,13 +1,13 @@
 {
   "scenario_id": "rule_risk",
-  "planner_mode": "mock",
+  "planner_mode": "deepseek",
   "invocations": [
     {
       "invocation": 1,
       "steps": [
         {
           "step": 1,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "read_asset",
           "tool_parameters": {
             "asset_id": "M03",
@@ -15,12 +15,12 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：无",
           "next_action": "check_rules",
-          "decision_basis": "先读取素材并确认信息完整性。",
-          "timestamp": "2026-11-04T14:41:49.574555+00:00"
+          "decision_basis": "需先核实 M03 版本 2 的素材元数据与缺失字段，再判断后续处理。",
+          "timestamp": "2026-11-05T01:19:17.173772+00:00"
         },
         {
           "step": 2,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "check_rules",
           "tool_parameters": {
             "asset_id": "M03",
@@ -29,20 +29,20 @@
           },
           "tool_result_summary": "规则检查完成；通过=False；风险=['prohibited_claim', 'missing_required_disclosure', 'compliance_review_required']",
           "next_action": "finish",
-          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
-          "timestamp": "2026-11-04T14:41:49.574555+00:00"
+          "decision_basis": "素材含绝对化与保收益类宣称，需先核验授权与合规风险再决定是否可排期。",
+          "timestamp": "2026-11-05T01:19:18.645864+00:00"
         },
         {
           "step": 3,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "finish",
           "tool_parameters": {
             "completion_status": "blocked"
           },
           "tool_result_summary": "工具执行成功",
           "next_action": null,
-          "decision_basis": "发现阻断风险，禁止进入排期和保存。",
-          "timestamp": "2026-11-04T14:41:49.574555+00:00"
+          "decision_basis": "规则检查未通过：prohibited_claim 与 missing_required_disclosure 为 block 级，且金融推广需合规确认，硬性 requested_start 16:00 无法保存草稿。",
+          "timestamp": "2026-11-05T01:19:20.361395+00:00"
         }
       ]
     }

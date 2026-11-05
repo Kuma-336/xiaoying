@@ -1,13 +1,13 @@
 {
   "scenario_id": "save_failure",
-  "planner_mode": "mock",
+  "planner_mode": "deepseek",
   "invocations": [
     {
       "invocation": 1,
       "steps": [
         {
           "step": 1,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "read_asset",
           "tool_parameters": {
             "asset_id": "M05",
@@ -15,12 +15,12 @@
           },
           "tool_result_summary": "素材已读取；缺失字段：无",
           "next_action": "check_rules",
-          "decision_basis": "先读取素材并确认信息完整性。",
-          "timestamp": "2026-11-04T14:41:49.627678+00:00"
+          "decision_basis": "需先核对 M05 第 4 版素材元数据与缺失字段，才能评估排期可行性。",
+          "timestamp": "2026-11-05T01:19:43.819100+00:00"
         },
         {
           "step": 2,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "check_rules",
           "tool_parameters": {
             "asset_id": "M05",
@@ -29,12 +29,12 @@
           },
           "tool_result_summary": "规则检查完成；通过=True；风险=[]",
           "next_action": "query_slots",
-          "decision_basis": "素材信息完整，执行内容、平台和授权规则检查。",
-          "timestamp": "2026-11-04T14:41:49.627678+00:00"
+          "decision_basis": "元数据无缺失字段，需按用户硬性要求的时间核查平台限制与授权风险。",
+          "timestamp": "2026-11-05T01:19:44.954117+00:00"
         },
         {
           "step": 3,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "query_slots",
           "tool_parameters": {
             "request_id": "REQ-M05-SAVE-FAIL",
@@ -44,12 +44,12 @@
           },
           "tool_result_summary": "候选时段可用",
           "next_action": "save_draft",
-          "decision_basis": "规则通过，查询用户要求或已确认的候选时段。",
-          "timestamp": "2026-11-04T14:41:49.627678+00:00"
+          "decision_basis": "规则检查已通过，需确认用户指定的硬性时段是否可排期。",
+          "timestamp": "2026-11-05T01:19:46.217403+00:00"
         },
         {
           "step": 4,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
           "selected_action": "save_draft",
           "tool_parameters": {
             "request_id": "REQ-M05-SAVE-FAIL",
@@ -58,25 +58,44 @@
             "requested_start": "2026-11-09T11:00:00+08:00",
             "scheduled_start": "2026-11-09T11:00:00+08:00",
             "confirmation_status": "not_required",
-            "review_status": "approved",
+            "review_status": "passed",
             "risk_codes": []
           },
           "tool_result_summary": "失败：storage_unavailable - 草稿存储暂时不可用",
-          "next_action": "finish",
-          "decision_basis": "审核和时段前置条件已满足，幂等保存草稿。",
-          "timestamp": "2026-11-04T14:41:49.627678+00:00"
+          "next_action": "save_draft",
+          "decision_basis": "元数据完整、规则检查通过、指定时段可用，按用户硬性时间保存排期草稿。",
+          "timestamp": "2026-11-05T01:19:47.911479+00:00"
         },
         {
           "step": 5,
-          "model": "deterministic-mock",
+          "model": "deepseek-flash",
+          "selected_action": "save_draft",
+          "tool_parameters": {
+            "asset_id": "M05",
+            "asset_version": 4,
+            "confirmation_status": "not_required",
+            "request_id": "REQ-M05-SAVE-FAIL",
+            "requested_start": "2026-11-09T11:00:00+08:00",
+            "risk_codes": [],
+            "review_status": "passed",
+            "scheduled_start": "2026-11-09T11:00:00+08:00"
+          },
+          "tool_result_summary": "失败：storage_unavailable - 草稿存储暂时不可用",
+          "next_action": "finish",
+          "decision_basis": "上次保存因存储暂时不可用失败并可重试，按幂等性重试同一草稿。",
+          "timestamp": "2026-11-05T01:19:49.644987+00:00"
+        },
+        {
+          "step": 6,
+          "model": "deepseek-flash",
           "selected_action": "finish",
           "tool_parameters": {
             "completion_status": "failed"
           },
           "tool_result_summary": "工具执行成功",
           "next_action": null,
-          "decision_basis": "草稿保存失败，明确返回失败状态。",
-          "timestamp": "2026-11-04T14:41:49.627678+00:00"
+          "decision_basis": "素材检查均通过，但草稿存储连续两次不可用，排期草稿未能保存。",
+          "timestamp": "2026-11-05T01:19:51.194001+00:00"
         }
       ]
     }

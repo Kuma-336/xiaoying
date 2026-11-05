@@ -129,7 +129,12 @@ class BusinessTools:
             spec(
                 "finish",
                 "在已有观察足以形成结果时结束当前素材处理。",
-                {"completion_status": {"type": "string"}},
+                {
+                    "completion_status": {
+                        "type": "string",
+                        "enum": ["completed", "incomplete", "blocked", "pending_confirmation", "failed"],
+                    }
+                },
                 ["completion_status"],
             ),
         ]
@@ -305,6 +310,8 @@ class BusinessTools:
         if asset is None:
             return {"ok": False, "error_code": "asset_not_found", "retryable": False}
         candidate = datetime.fromisoformat(candidate_start)
+        if latest_start in {"", "null", "None"}:
+            latest_start = None
         conflicts = self._conflicts(asset, request_id, candidate)
         available = self._inside_window(asset, candidate) and not conflicts
         alternatives: list[str] = []

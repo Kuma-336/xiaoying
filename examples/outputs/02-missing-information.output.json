@@ -1,9 +1,9 @@
 {
-  "run_id": "c7aa81a9-0501-4973-8343-e1bf4c212321",
+  "run_id": "1628384f-82ed-4678-af54-555dbff12cc1",
   "scenario_id": "missing_information",
   "request_id": "REQ-M02-FLEX",
-  "planner_mode": "mock",
-  "model": "deterministic-mock",
+  "planner_mode": "deepseek",
+  "model": "deepseek-flash",
   "overall_status": "incomplete",
   "completion_reason": null,
   "asset_id": "M02",
@@ -26,7 +26,7 @@
       "missing_fields": [
         "duration_seconds"
       ],
-      "message": "请补充素材字段：duration_seconds"
+      "message": "M02 v1（抖音短视频《社区用户故事》）缺少 duration_seconds（时长）字段，请补充该素材的实际时长，以便校验平台时长限制并完成排期审核。"
     }
   ],
   "pending_confirmation_count": 1,

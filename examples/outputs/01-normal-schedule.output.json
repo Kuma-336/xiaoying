@@ -1,9 +1,9 @@
 {
-  "run_id": "f15fcfec-ee5a-47e4-9f86-c5bcb85c8fb5",
+  "run_id": "5433abe7-6267-453b-8587-afe6d4bb8897",
   "scenario_id": "normal_schedule",
   "request_id": "REQ-M05-NORMAL",
-  "planner_mode": "mock",
-  "model": "deterministic-mock",
+  "planner_mode": "deepseek",
+  "model": "deepseek-flash",
   "overall_status": "completed",
   "completion_reason": null,
   "asset_id": "M05",
